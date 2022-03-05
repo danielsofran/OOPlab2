@@ -6,6 +6,7 @@
 #define LAB2_TESTS_H
 
 #include "domain.h"
+#include "validator.h"
 #include "repository.h"
 
 #include "assert.h"
@@ -14,6 +15,8 @@
 void test_medicament_getters();
 void test_medicament_setters();
 void test_medicament_externs();
+
+void test_validator();
 
 void test_repo_getters();
 void test_repo_setters();

@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "lab2::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-lab2-Debug-216f50de4dcae3c3fae1.json",
+					"jsonFile" : "target-lab2-Debug-b28362ddd2384c7d1843.json",
 					"name" : "lab2",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Desktop/OOP/lab2/cmake-build-debug-coverage",
+		"build" : "C:/Desktop/OOP/lab2/cmake-build-debug",
 		"source" : "C:/Desktop/OOP/lab2"
 	},
 	"version" : 

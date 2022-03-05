@@ -52,7 +52,22 @@ void test_medicament_externs(){ // testez operatiile externe
     assert(medicament_get_cantitate(medicament1) == 0);
 }
 
+void test_validator(){
+    assert(validate_nume("abC def") == VALIDATOR_OK);
+    assert(validate_nume("asfswd%") == EROARE_NUME);
+    assert(validate_nume("") == EROARE_NUME);
+    assert(validate_cod("Abc123") == VALIDATOR_OK);
+    assert(validate_cod("ned$wbu") == EROARE_COD);
+    assert(validate_cod("") == EROARE_COD);
+    assert(validate_cantitate(3) == VALIDATOR_OK);
+    assert(validate_cantitate(-2) == EROARE_CANT);
+    assert(validate_concentratie(82.123) == VALIDATOR_OK);
+    assert(validate_concentratie(-39.1) == EROARE_CONC);
+    assert(validate_concentratie(120.0) == EROARE_CONC);
 
+    Medicament medicament = medicament_create("", "acb", 0, 0);
+    assert(validate_madicament(medicament) == 0b1101);
+}
 
 void test_repo_getters(){ // testez getterii
     Repository repository = repository_create();
@@ -67,6 +82,10 @@ void test_repo_getters(){ // testez getterii
     repository.length=1;
     repository.medicamente[0] = medicament;
     assert(medicament_eq(medicament_create_default(), repository_get_element_at(repository, 0)));
+    int index = repository_index_of(repository, medicament_create_default());
+    assert(index == 0);
+    index = repository_index_of(repository, medicament_create("1", "2", 3.7, 4));
+    assert(index == NOT_FOUND);
 }
 
 void test_repo_setters(){
@@ -98,6 +117,7 @@ void test_repo_setters(){
 void testall() { // apelez toate testele
     test_medicament_getters();
     test_medicament_setters();
+    test_validator();
     test_repo_getters();
     test_medicament_externs();
     test_repo_setters();

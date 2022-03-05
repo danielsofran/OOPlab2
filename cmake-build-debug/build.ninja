@@ -73,6 +73,24 @@ build CMakeFiles/lab2.dir/repository.c.obj: C_COMPILER__lab2_Debug C$:/Desktop/O
   OBJECT_DIR = CMakeFiles\lab2.dir
   OBJECT_FILE_DIR = CMakeFiles\lab2.dir
 
+build CMakeFiles/lab2.dir/validator.c.obj: C_COMPILER__lab2_Debug C$:/Desktop/OOP/lab2/validator.c || cmake_object_order_depends_target_lab2
+  DEP_FILE = CMakeFiles\lab2.dir\validator.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\lab2.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab2.dir
+
+build CMakeFiles/lab2.dir/ui.c.obj: C_COMPILER__lab2_Debug C$:/Desktop/OOP/lab2/ui.c || cmake_object_order_depends_target_lab2
+  DEP_FILE = CMakeFiles\lab2.dir\ui.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\lab2.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab2.dir
+
+build CMakeFiles/lab2.dir/service.c.obj: C_COMPILER__lab2_Debug C$:/Desktop/OOP/lab2/service.c || cmake_object_order_depends_target_lab2
+  DEP_FILE = CMakeFiles\lab2.dir\service.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\lab2.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lab2
@@ -81,7 +99,7 @@ build CMakeFiles/lab2.dir/repository.c.obj: C_COMPILER__lab2_Debug C$:/Desktop/O
 #############################################
 # Link the executable lab2.exe
 
-build lab2.exe: C_EXECUTABLE_LINKER__lab2_Debug CMakeFiles/lab2.dir/main.c.obj CMakeFiles/lab2.dir/domain.c.obj CMakeFiles/lab2.dir/tests.c.obj CMakeFiles/lab2.dir/repository.c.obj
+build lab2.exe: C_EXECUTABLE_LINKER__lab2_Debug CMakeFiles/lab2.dir/main.c.obj CMakeFiles/lab2.dir/domain.c.obj CMakeFiles/lab2.dir/tests.c.obj CMakeFiles/lab2.dir/repository.c.obj CMakeFiles/lab2.dir/validator.c.obj CMakeFiles/lab2.dir/ui.c.obj CMakeFiles/lab2.dir/service.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab2.dir

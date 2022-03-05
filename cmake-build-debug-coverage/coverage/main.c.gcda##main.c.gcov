@@ -7,10 +7,10 @@
         -:    3:
 function main called 1 returned 100% blocks executed 100%
         1:    4:int main() {
-        1:    5:    printf("Hello, World!\n");
+        1:    5:    testall();
         1:    5-block  0
 call    0 returned 1
-        1:    6:    testall();
+        1:    6:    printf("Hello, World!\n");
 call    0 returned 1
         1:    7:    return 0;
         -:    8:}

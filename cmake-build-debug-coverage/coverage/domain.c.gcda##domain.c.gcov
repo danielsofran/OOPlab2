@@ -20,60 +20,60 @@ function medicament_create_default called 5 returned 100% blocks executed 100%
         5:   14-block  0
         -:   15:}
         -:   16:
-function medicament_create called 3 returned 100% blocks executed 100%
-        3:   17:Medicament medicament_create(char* cod, char* nume, double concentratie, int cantitate){ // creez un medicament cu valorile date
+function medicament_create called 4 returned 100% blocks executed 100%
+        4:   17:Medicament medicament_create(char* cod, char* nume, double concentratie, int cantitate){ // creez un medicament cu valorile date
         -:   18:    Medicament medicament;
-        3:   19:    strcpy(medicament.cod, cod);
-        3:   20:    strcpy(medicament.nume, nume);
-        3:   21:    medicament.concentratie = concentratie;
-        3:   22:    medicament.cantitate = cantitate;
-        3:   23:    return medicament;
-        3:   23-block  0
+        4:   19:    strcpy(medicament.cod, cod);
+        4:   20:    strcpy(medicament.nume, nume);
+        4:   21:    medicament.concentratie = concentratie;
+        4:   22:    medicament.cantitate = cantitate;
+        4:   23:    return medicament;
+        4:   23-block  0
         -:   24:}
         -:   25:
-function medicament_get_cod called 3 returned 100% blocks executed 100%
-        3:   26:void medicament_get_cod(Medicament medicament, char* cod){
+function medicament_get_cod called 4 returned 100% blocks executed 100%
+        4:   26:void medicament_get_cod(Medicament medicament, char* cod){
         -:   27:    // copiaza codul medicamentului dat ca prim parametru in sirul cod
-        3:   28:    strcpy(cod, medicament.cod);
-        3:   29:}
-function medicament_get_nume called 3 returned 100% blocks executed 100%
-        3:   30:void medicament_get_nume(Medicament medicament, char* nume){
+        4:   28:    strcpy(cod, medicament.cod);
+        4:   29:}
+function medicament_get_nume called 4 returned 100% blocks executed 100%
+        4:   30:void medicament_get_nume(Medicament medicament, char* nume){
         -:   31:    // copiaza numele medicamentului dat ca prim parametru in sirul nume
-        3:   32:    strcpy(nume, medicament.nume);
-        3:   33:}
-function medicament_get_concentratie called 3 returned 100% blocks executed 100%
-        3:   34:double medicament_get_concentratie(Medicament medicament){
+        4:   32:    strcpy(nume, medicament.nume);
+        4:   33:}
+function medicament_get_concentratie called 4 returned 100% blocks executed 100%
+        4:   34:double medicament_get_concentratie(Medicament medicament){
         -:   35:    // returneaza concentratia medicamentului dat ca prim parametru
-        3:   36:    return medicament.concentratie;
-        3:   36-block  0
+        4:   36:    return medicament.concentratie;
+        4:   36-block  0
         -:   37:}
-function medicament_get_cantitate called 4 returned 100% blocks executed 100%
-        4:   38:int medicament_get_cantitate(Medicament medicament){
+function medicament_get_cantitate called 5 returned 100% blocks executed 100%
+        5:   38:int medicament_get_cantitate(Medicament medicament){
         -:   39:    // returneaza nr de medicamente 'medicament' din stoc
-        4:   40:    return medicament.cantitate;
-        4:   40-block  0
+        5:   40:    return medicament.cantitate;
+        5:   40-block  0
         -:   41:}
         -:   42:
 function medicament_set_cod called 2 returned 100% blocks executed 100%
         2:   43:void medicament_set_cod(Medicament* medicament, char* cod){
         -:   44:    // seteaza codul medicamentului dat ca prim parametru la sirul cod
-        -:   45:
-        2:   46:    strcpy(medicament->cod, cod);
-        2:   47:}
+        2:   45:    strcpy(medicament->cod, cod);
+        2:   46:}
 function medicament_set_nume called 2 returned 100% blocks executed 100%
-        2:   48:void medicament_set_nume(Medicament* medicament, char* nume){
-        -:   49:    // seteaza numele medicamentului dat ca prim parametru la sirul nume
-        2:   50:    strcpy(medicament->nume, nume);
-        2:   51:}
+        2:   47:void medicament_set_nume(Medicament* medicament, char* nume){
+        -:   48:    // seteaza numele medicamentului dat ca prim parametru la sirul nume
+        2:   49:    strcpy(medicament->nume, nume);
+        2:   50:}
 function medicament_set_concentratie called 2 returned 100% blocks executed 100%
-        2:   52:void medicament_set_concentratie(Medicament* medicament, double concentratie){
-        -:   53:    // seteaza concentratia medicamentului dat ca prim parametru la al doilea parametru, concentratie
-        2:   54:    medicament->concentratie = concentratie;
-        2:   55:}
+        2:   51:void medicament_set_concentratie(Medicament* medicament, double concentratie){
+        -:   52:    // seteaza concentratia medicamentului dat ca prim parametru la al doilea parametru, concentratie
+        2:   53:    medicament->concentratie = concentratie;
+        2:   54:}
 function medicament_set_cantitate called 2 returned 100% blocks executed 100%
-        2:   56:void medicament_set_cantitate(Medicament* medicament, int cantitate){
-        -:   57:    // seteaza cantitatea medicamentului dat ca prim parametru la al doilea parametru, cantitate
-        2:   58:    medicament->cantitate = cantitate;
+        2:   55:void medicament_set_cantitate(Medicament* medicament, int cantitate){
+        -:   56:    // seteaza cantitatea medicamentului dat ca prim parametru la al doilea parametru, cantitate
+        2:   57:    medicament->cantitate = cantitate;
+        2:   58:    (*medicament).cantitate = cantitate;
         2:   59:}
         -:   60:
 function medicament_eq called 5 returned 100% blocks executed 75%

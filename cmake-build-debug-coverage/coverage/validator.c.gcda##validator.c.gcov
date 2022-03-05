@@ -1,0 +1,153 @@
+        -:    0:Source:C:/Desktop/OOP/lab2/validator.c
+        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\validator.c.gcno
+        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\validator.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 05.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#include "validator.h"
+        -:    6:
+function validate_cod called 4 returned 100% blocks executed 100%
+        4:    7:int validate_cod(char* cod){
+        -:    8:    // verific ca codul sa fie strict alfanumeric
+        -:    9:    // daca valoarea este invalida, returnez o eroare specifica
+        -:   10:    // altfel, returnez VALIDATOR_OK
+        4:   11:    if(strlen(cod) == 0)
+        4:   11-block  0
+branch  0 taken 2 (fallthrough)
+branch  1 taken 2
+        2:   12:        return EROARE_COD;
+        2:   12-block  0
+       11:   13:    for(int i=0; cod[i]; ++i)
+        2:   13-block  0
+        9:   13-block  1
+       11:   13-block  2
+branch  0 taken 10
+branch  1 taken 1 (fallthrough)
+       10:   14:        if(!isalnum(cod[i]))
+       10:   14-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 9
+        1:   15:            return EROARE_COD;
+        1:   15-block  0
+        1:   16:    return VALIDATOR_OK;
+        1:   16-block  0
+        -:   17:}
+function validate_nume called 4 returned 100% blocks executed 100%
+        4:   18:int validate_nume(char* nume){
+        -:   19:    // verifica ca nume sa contina doar litere si spatii
+        -:   20:    // daca valoarea este invalida, returnez o eroare specifica
+        -:   21:    // altfel, returnez VALIDATOR_OK
+        4:   22:    if(strlen(nume) == 0)
+        4:   22-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 3
+        1:   23:        return EROARE_NUME;
+        1:   23-block  0
+       19:   24:    for(int i=0; nume[i]; ++i)
+        3:   24-block  0
+       16:   24-block  1
+       19:   24-block  2
+branch  0 taken 17
+branch  1 taken 2 (fallthrough)
+       17:   25:        if(!isalpha(nume[i]) && !isblank(nume[i]))
+       17:   25-block  0
+branch  0 taken 2 (fallthrough)
+branch  1 taken 15
+        2:   25-block  1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 1
+        1:   26:            return EROARE_NUME;
+        1:   26-block  0
+        2:   27:    return VALIDATOR_OK;
+        2:   27-block  0
+        -:   28:}
+function validate_concentratie called 4 returned 100% blocks executed 100%
+        4:   29:int validate_concentratie(double concentratie){
+        -:   30:    // verific daca concentratia este sau nu un procent pozitiv
+        -:   31:    // daca valoarea este invalida, returnez o eroare specifica
+        -:   32:    // altfel, returnez VALIDATOR_OK
+        4:   33:    if(concentratie<=0 || concentratie>100.0)
+        4:   33-block  0
+branch  0 taken 2 (fallthrough)
+branch  1 taken 2
+        2:   33-block  1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 1
+        3:   34:        return EROARE_CONC;
+        3:   34-block  0
+        1:   35:    return VALIDATOR_OK;
+        1:   35-block  0
+        -:   36:}
+function validate_cantitate called 3 returned 100% blocks executed 100%
+        3:   37:int validate_cantitate(int cantitate){
+        -:   38:    // verific daca cantitatea e nr pozitiv
+        -:   39:    // daca valoarea este invalida, returnez o eroare specifica
+        -:   40:    // altfel, returnez VALIDATOR_OK
+        3:   41:    if(cantitate > 0)
+        3:   41-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 2
+        1:   42:        return VALIDATOR_OK;
+        1:   42-block  0
+        2:   43:    return EROARE_CANT;
+        2:   43-block  0
+        -:   44:}
+function validate_madicament called 1 returned 100% blocks executed 100%
+        1:   45:int validate_madicament(Medicament medicament){
+        -:   46:    // verific toate proprietatile medicamentului
+        -:   47:    char nume[LGMAX_NUME], cod[LGMAX_COD];
+        1:   48:    medicament_get_nume(medicament, nume);
+        1:   48-block  0
+call    0 returned 1
+        1:   49:    medicament_get_cod(medicament, cod);
+call    0 returned 1
+        1:   50:    return  validate_cod(cod) +
+call    0 returned 1
+        1:   51:            validate_nume(nume) +
+call    0 returned 1
+        2:   52:            validate_concentratie(medicament_get_concentratie(medicament)) +
+call    0 returned 1
+call    1 returned 1
+        1:   53:            validate_cantitate(medicament_get_cantitate(medicament));
+call    0 returned 1
+call    1 returned 1
+        -:   54:}
+        -:   55:
+function validate_printerrs called 0 returned 0% blocks executed 0%
+    #####:   56:void validate_printerrs(int cod_eroare){
+        -:   57:    // iau erorile si le afisez
+    #####:   58:    if(cod_eroare>=EROARE_CANT)
+    %%%%%:   58-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   59:        printf("Cantitatea introdusa gresit!\n"),
+    %%%%%:   59-block  0
+call    0 never executed
+    #####:   60:        cod_eroare -= EROARE_CANT;
+    #####:   61:    if(cod_eroare>=EROARE_CONC)
+    %%%%%:   61-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   62:        printf("Concentratie introdusa gresit!\n"),
+    %%%%%:   62-block  0
+call    0 never executed
+    #####:   63:        cod_eroare -= EROARE_CONC;
+    #####:   64:    if(cod_eroare>=EROARE_NUME)
+    %%%%%:   64-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   65:        printf("Nume introdus gresit!\n"),
+    %%%%%:   65-block  0
+call    0 never executed
+    #####:   66:        cod_eroare -= EROARE_NUME;
+    #####:   67:    if(cod_eroare>=EROARE_COD)
+    %%%%%:   67-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   68:        printf("Cod introdus gresit!\n"),
+    %%%%%:   68-block  0
+call    0 never executed
+    #####:   69:        cod_eroare -= EROARE_COD;
+    #####:   70:}

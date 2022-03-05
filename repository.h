@@ -29,7 +29,8 @@ void repository_set_length(Repository*, int); // setter lungime
 //void repository_set_capacity(Repository*, int); // setter capacitate, realocare
 void repository_set_element_at(Repository*, int, Medicament); // indexer set
 
-void repository_add(Repository*, Medicament);
+void repository_add(Repository*, Medicament); // append
+int repository_index_of(Repository, Medicament); // find
 
 //void repository_realloc(Repository*); // realocarea spatiului daca apar depasiri
 //void repository_delete(Repository*); // destructor

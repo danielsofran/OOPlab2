@@ -12,5 +12,6 @@
 #define CLEAR_ERRORS (errno=0)
 #define OUT_OF_RANGE 0xf1
 #define INSUFFICIENT_CAPACITY 0xf2
+#define NOT_FOUND -0xa1
 
 #endif //LAB2_ERRORS_H

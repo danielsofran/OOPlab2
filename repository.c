@@ -65,3 +65,12 @@ void repository_add(Repository* repository, Medicament medicament){
     }
     repository->medicamente[repository->length++] = medicament;
 }
+
+int repository_index_of(Repository repository, Medicament medicament)
+{
+    int n = repository_get_length(repository);
+    for(int i=0;i<n;++i)
+        if(medicament_eq(medicament, repository_get_element_at(repository, i)))
+            return i;
+    return NOT_FOUND;
+}
