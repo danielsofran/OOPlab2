@@ -1,0 +1,105 @@
+        -:    0:Source:C:/Desktop/OOP/lab2/domain.c
+        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\domain.c.gcno
+        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\domain.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 05.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#include <math.h>
+        -:    6:#include "domain.h"
+        -:    7:
+function medicament_create_default called 5 returned 100% blocks executed 100%
+        5:    8:Medicament medicament_create_default(){ // creez un medicament
+        -:    9:    Medicament medicament;
+        5:   10:    strcpy(medicament.cod, "0");
+        5:   11:    strcpy(medicament.nume, "medicament");
+        5:   12:    medicament.concentratie = 0.0;
+        5:   13:    medicament.cantitate = 0;
+        5:   14:    return medicament;
+        5:   14-block  0
+        -:   15:}
+        -:   16:
+function medicament_create called 3 returned 100% blocks executed 100%
+        3:   17:Medicament medicament_create(char* cod, char* nume, double concentratie, int cantitate){ // creez un medicament cu valorile date
+        -:   18:    Medicament medicament;
+        3:   19:    strcpy(medicament.cod, cod);
+        3:   20:    strcpy(medicament.nume, nume);
+        3:   21:    medicament.concentratie = concentratie;
+        3:   22:    medicament.cantitate = cantitate;
+        3:   23:    return medicament;
+        3:   23-block  0
+        -:   24:}
+        -:   25:
+function medicament_get_cod called 3 returned 100% blocks executed 100%
+        3:   26:void medicament_get_cod(Medicament medicament, char* cod){
+        -:   27:    // copiaza codul medicamentului dat ca prim parametru in sirul cod
+        3:   28:    strcpy(cod, medicament.cod);
+        3:   29:}
+function medicament_get_nume called 3 returned 100% blocks executed 100%
+        3:   30:void medicament_get_nume(Medicament medicament, char* nume){
+        -:   31:    // copiaza numele medicamentului dat ca prim parametru in sirul nume
+        3:   32:    strcpy(nume, medicament.nume);
+        3:   33:}
+function medicament_get_concentratie called 3 returned 100% blocks executed 100%
+        3:   34:double medicament_get_concentratie(Medicament medicament){
+        -:   35:    // returneaza concentratia medicamentului dat ca prim parametru
+        3:   36:    return medicament.concentratie;
+        3:   36-block  0
+        -:   37:}
+function medicament_get_cantitate called 4 returned 100% blocks executed 100%
+        4:   38:int medicament_get_cantitate(Medicament medicament){
+        -:   39:    // returneaza nr de medicamente 'medicament' din stoc
+        4:   40:    return medicament.cantitate;
+        4:   40-block  0
+        -:   41:}
+        -:   42:
+function medicament_set_cod called 2 returned 100% blocks executed 100%
+        2:   43:void medicament_set_cod(Medicament* medicament, char* cod){
+        -:   44:    // seteaza codul medicamentului dat ca prim parametru la sirul cod
+        -:   45:
+        2:   46:    strcpy(medicament->cod, cod);
+        2:   47:}
+function medicament_set_nume called 2 returned 100% blocks executed 100%
+        2:   48:void medicament_set_nume(Medicament* medicament, char* nume){
+        -:   49:    // seteaza numele medicamentului dat ca prim parametru la sirul nume
+        2:   50:    strcpy(medicament->nume, nume);
+        2:   51:}
+function medicament_set_concentratie called 2 returned 100% blocks executed 100%
+        2:   52:void medicament_set_concentratie(Medicament* medicament, double concentratie){
+        -:   53:    // seteaza concentratia medicamentului dat ca prim parametru la al doilea parametru, concentratie
+        2:   54:    medicament->concentratie = concentratie;
+        2:   55:}
+function medicament_set_cantitate called 2 returned 100% blocks executed 100%
+        2:   56:void medicament_set_cantitate(Medicament* medicament, int cantitate){
+        -:   57:    // seteaza cantitatea medicamentului dat ca prim parametru la al doilea parametru, cantitate
+        2:   58:    medicament->cantitate = cantitate;
+        2:   59:}
+        -:   60:
+function medicament_eq called 5 returned 100% blocks executed 75%
+        5:   61:int medicament_eq(Medicament medicament1, Medicament medicament2){
+        -:   62:    // verifica daca proprietatile celor 2 medicamente date au aceleasi campuri, exceptie facand cantitatea
+        5:   63:    if(strcmp(medicament1.cod, medicament2.cod) !=0) return 0;
+        5:   63-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 4
+        1:   63-block  1
+       4*:   64:    if(strcmp(medicament1.nume, medicament2.nume) !=0) return 0;
+        4:   64-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 4
+    %%%%%:   64-block  1
+       4*:   65:    if(fabs(medicament1.concentratie-medicament2.concentratie)>=1e-6) return 0;
+        4:   65-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 4
+    %%%%%:   65-block  1
+        4:   66:    return 1;
+        4:   66-block  0
+        -:   67:}
+        -:   68:
+function medicament_sterge_stoc called 1 returned 100% blocks executed 100%
+        1:   69:void medicament_sterge_stoc(Medicament* medicament){
+        -:   70:    // sterg stocul, adica setez cantitatea la 0
+        1:   71:    medicament->cantitate = 0;
+        1:   72:}

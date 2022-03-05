@@ -1,0 +1,337 @@
+        -:    0:Source:C:/Desktop/OOP/lab2/tests.c
+        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\tests.c.gcno
+        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\tests.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 05.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#include "tests.h"
+        -:    6:
+function test_medicament_getters called 1 returned 100% blocks executed 63%
+        1:    7:void test_medicament_getters(){ // testez toti getterii
+        1:    8:    Medicament medicament = medicament_create_default();
+        1:    8-block  0
+call    0 returned 1
+        -:    9:    char nume[LGMAX_NUME], cod[LGMAX_COD];
+        1:   10:    medicament_get_cod(medicament, cod);
+call    0 returned 1
+        1:   11:    medicament_get_nume(medicament, nume);
+call    0 returned 1
+       1*:   12:    assert(strcmp(cod, "0")==0);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:   12-block  0
+call    2 never executed
+        1:   12-block  1
+       1*:   13:    assert(strcmp(nume, "medicament")==0);
+        1:   13-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:   13-block  1
+call    2 never executed
+        1:   13-block  2
+       1*:   14:    assert(medicament_get_concentratie(medicament) == 0.0);
+        1:   14-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   14-block  1
+call    3 never executed
+        1:   14-block  2
+       1*:   15:    assert(medicament_get_cantitate(medicament) == 0);
+        1:   15-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   15-block  1
+call    3 never executed
+        1:   15-block  2
+        -:   16:
+        1:   17:    medicament = medicament_create("1234", "Fasconal", 30.0, 10);
+        1:   17-block  0
+call    0 returned 1
+        1:   18:    medicament_get_cod(medicament, cod);
+call    0 returned 1
+        1:   19:    medicament_get_nume(medicament, nume);
+call    0 returned 1
+       1*:   20:    assert(strcmp(cod, "1234")==0);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:   20-block  0
+call    2 never executed
+        1:   20-block  1
+       1*:   21:    assert(strcmp(nume, "Fasconal")==0);
+        1:   21-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:   21-block  1
+call    2 never executed
+        1:   21-block  2
+       1*:   22:    assert(medicament_get_concentratie(medicament) == 30.0);
+        1:   22-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   22-block  1
+call    3 never executed
+        1:   22-block  2
+       1*:   23:    assert(medicament_get_cantitate(medicament) == 10);
+        1:   23-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   23-block  1
+call    3 never executed
+        1:   23-block  2
+        1:   24:}
+        -:   25:
+function test_medicament_setters called 1 returned 100% blocks executed 68%
+        1:   26:void test_medicament_setters(){ // testez toti setterii
+        -:   27:    Medicament medicament;
+        1:   28:    medicament_set_cod(&medicament, "1234");
+        1:   28-block  0
+call    0 returned 1
+        1:   29:    medicament_set_nume(&medicament, "Fasconal");
+call    0 returned 1
+        1:   30:    medicament_set_concentratie(&medicament, 30.0);
+call    0 returned 1
+        1:   31:    medicament_set_cantitate(&medicament, 10);
+call    0 returned 1
+        -:   32:
+        -:   33:    char nume[LGMAX_NUME], cod[LGMAX_COD];
+        1:   34:    medicament_get_cod(medicament, cod);
+call    0 returned 1
+        1:   35:    medicament_get_nume(medicament, nume);
+call    0 returned 1
+       1*:   36:    assert(strcmp(cod, "1234")==0);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:   36-block  0
+call    2 never executed
+        1:   36-block  1
+       1*:   37:    assert(strcmp(nume, "Fasconal")==0);
+        1:   37-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:   37-block  1
+call    2 never executed
+        1:   37-block  2
+       1*:   38:    assert(medicament_get_concentratie(medicament) == 30.0);
+        1:   38-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   38-block  1
+call    3 never executed
+        1:   38-block  2
+       1*:   39:    assert(medicament_get_cantitate(medicament) == 10);
+        1:   39-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   39-block  1
+call    3 never executed
+        1:   39-block  2
+        1:   40:}
+        -:   41:
+function test_medicament_externs called 1 returned 100% blocks executed 74%
+        1:   42:void test_medicament_externs(){ // testez operatiile externe
+        1:   43:    Medicament medicament1, medicament2 = medicament_create("1234", "Fasconal", 30.0, 10);
+        1:   43-block  0
+call    0 returned 1
+        1:   44:    medicament_set_cod(&medicament1, "1234");
+call    0 returned 1
+        1:   45:    medicament_set_nume(&medicament1, "Fasconal");
+call    0 returned 1
+        1:   46:    medicament_set_concentratie(&medicament1, 30.0);
+call    0 returned 1
+        1:   47:    medicament_set_cantitate(&medicament1, 10);
+call    0 returned 1
+       1*:   48:    assert(medicament_eq(medicament1, medicament2));
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   48-block  0
+call    3 never executed
+        1:   48-block  1
+       1*:   49:    assert(!medicament_eq(medicament1, medicament_create_default()));
+        1:   49-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 0 (fallthrough)
+branch  3 taken 1
+    %%%%%:   49-block  1
+call    4 never executed
+        1:   49-block  2
+        -:   50:
+        1:   51:    medicament_sterge_stoc(&medicament1);
+        1:   51-block  0
+call    0 returned 1
+       1*:   52:    assert(medicament_get_cantitate(medicament1) == 0);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   52-block  0
+call    3 never executed
+        1:   52-block  1
+        1:   53:}
+        -:   54:
+        -:   55:
+        -:   56:
+function test_repo_getters called 1 returned 100% blocks executed 70%
+        1:   57:void test_repo_getters(){ // testez getterii
+        1:   58:    Repository repository = repository_create();
+        1:   58-block  0
+call    0 returned 1
+       1*:   59:    assert(repository_get_length(repository) == 0);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   59-block  0
+call    3 never executed
+        1:   59-block  1
+       1*:   60:    assert(repository_get_capacity(repository) == LENGTHMAX);
+        1:   60-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   60-block  1
+call    3 never executed
+        1:   60-block  2
+        -:   61:
+        1:   62:    Medicament medicament = repository_get_element_at(repository, 1), mnull = {};
+        1:   62-block  0
+call    0 returned 1
+       1*:   63:    assert(IS_ERROR(OUT_OF_RANGE));
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   63-block  0
+call    3 never executed
+        1:   63-block  1
+        1:   64:    CLEAR_ERRORS;
+        1:   64-block  0
+call    0 returned 1
+        -:   65:
+        1:   66:    medicament = medicament_create_default();
+call    0 returned 1
+        1:   67:    repository.length=1;
+        1:   68:    repository.medicamente[0] = medicament;
+       1*:   69:    assert(medicament_eq(medicament_create_default(), repository_get_element_at(repository, 0)));
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+branch  3 taken 0 (fallthrough)
+branch  4 taken 1
+    %%%%%:   69-block  0
+call    5 never executed
+        1:   69-block  1
+        1:   70:}
+        -:   71:
+function test_repo_setters called 1 returned 100% blocks executed 73%
+        1:   72:void test_repo_setters(){
+        1:   73:    Repository repository = repository_create();
+        1:   73-block  0
+call    0 returned 1
+        1:   74:    Medicament m1 = medicament_create_default(), m2 = medicament_create("1234", "Fasconal", 30.0, 10);
+call    0 returned 1
+call    1 returned 1
+        1:   75:    repository_add(&repository, m1);
+call    0 returned 1
+       1*:   76:    assert(repository_get_length(repository)==1);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   76-block  0
+call    3 never executed
+        1:   76-block  1
+       1*:   77:    assert(medicament_eq(m1, repository_get_element_at(repository, 0)));
+        1:   77-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 0 (fallthrough)
+branch  3 taken 1
+    %%%%%:   77-block  1
+call    4 never executed
+        1:   77-block  2
+        -:   78:
+        1:   79:    repository_set_length(&repository, LENGTHMAX+10);
+        1:   79-block  0
+call    0 returned 1
+       1*:   80:    assert(IS_ERROR(INSUFFICIENT_CAPACITY));
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   80-block  0
+call    3 never executed
+        1:   80-block  1
+        1:   81:    CLEAR_ERRORS;
+        1:   81-block  0
+call    0 returned 1
+        -:   82:
+        1:   83:    repository_set_length(&repository, 2);
+call    0 returned 1
+       1*:   84:    assert(repository_get_length(repository) == 2);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   84-block  0
+call    3 never executed
+        1:   84-block  1
+        1:   85:    repository_set_element_at(&repository, 1, m2);
+        1:   85-block  0
+call    0 returned 1
+       1*:   86:    assert(medicament_eq(m2, repository_get_element_at(repository, 1)));
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 0 (fallthrough)
+branch  3 taken 1
+    %%%%%:   86-block  0
+call    4 never executed
+        1:   86-block  1
+        -:   87:
+        1:   88:    repository_set_element_at(&repository, 3, m1);
+        1:   88-block  0
+call    0 returned 1
+       1*:   89:    assert(IS_ERROR(OUT_OF_RANGE));
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   89-block  0
+call    3 never executed
+        1:   89-block  1
+        1:   90:    CLEAR_ERRORS;
+        1:   90-block  0
+call    0 returned 1
+        -:   91:
+        1:   92:    repository_set_length(&repository, LENGTHMAX);
+call    0 returned 1
+        1:   93:    repository_add(&repository, m1);
+call    0 returned 1
+       1*:   94:    assert(IS_ERROR(OUT_OF_RANGE));
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   94-block  0
+call    3 never executed
+        1:   94-block  1
+        1:   95:    CLEAR_ERRORS;
+        1:   95-block  0
+call    0 returned 1
+        1:   96:}
+        -:   97:
+function testall called 1 returned 100% blocks executed 100%
+        1:   98:void testall() { // apelez toate testele
+        1:   99:    test_medicament_getters();
+        1:   99-block  0
+call    0 returned 1
+        1:  100:    test_medicament_setters();
+call    0 returned 1
+        1:  101:    test_repo_getters();
+call    0 returned 1
+        1:  102:    test_medicament_externs();
+call    0 returned 1
+        1:  103:    test_repo_setters();
+call    0 returned 1
+        1:  104:}

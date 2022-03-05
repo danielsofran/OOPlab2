@@ -3,11 +3,14 @@
         -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\main.c.gcda
         -:    0:Runs:1
         -:    1:#include <stdio.h>
-        -:    2:
+        -:    2:#include "tests.h"
+        -:    3:
 function main called 1 returned 100% blocks executed 100%
-        1:    3:int main() {
-        1:    4:    printf("Hello, World!\n");
-        1:    4-block  0
+        1:    4:int main() {
+        1:    5:    printf("Hello, World!\n");
+        1:    5-block  0
 call    0 returned 1
-        1:    5:    return 0;
-        -:    6:}
+        1:    6:    testall();
+call    0 returned 1
+        1:    7:    return 0;
+        -:    8:}
