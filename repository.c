@@ -26,8 +26,7 @@ Medicament repository_get_element_at(Repository repository, int index) {
     if(index>=0 && index<repository.length)
         return repository.medicamente[index];
     SET_ERROR(OUT_OF_RANGE);
-    Medicament error={};
-    return error;
+    return medicament_create_default();
 }
 
 void repository_set_length(Repository* repository, int length) {
@@ -68,6 +67,8 @@ void repository_add(Repository* repository, Medicament medicament){
 
 int repository_index_of(Repository repository, Medicament medicament)
 {
+    // returnez pozitia pe care se afla un medicament
+    // NOT_FOUND daca nu exista
     int n = repository_get_length(repository);
     for(int i=0;i<n;++i)
         if(medicament_eq(medicament, repository_get_element_at(repository, i)))

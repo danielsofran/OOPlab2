@@ -30,18 +30,27 @@ Medicament medicament_scan(){ // citire date medicament de la tastatura
     if(IS_ERROR(ERANGE)) {
         printf("Concentratie introdusa gresit!\n");
         CLEAR_ERRORS;
-        Medicament mnull = {};
-        return mnull;
+        return medicament_create_default();
     }
     cant = strtol(scant, &endptr2, 10);
     if(IS_ERROR(ERANGE)){
         printf("Cantitate introdusa gresit!\n");
         CLEAR_ERRORS;
-        Medicament  mnull={};
-        return mnull;
+        return medicament_create_default();
     }
     Medicament rez = medicament_create(cod, nume, conc, cant);
     return rez;
+}
+
+void service_print(Service* service)
+{
+    int length = service_length(*service);
+    printf("Numarul de medicamente: %d\n", length);
+    for(Medicament* elem= service_iterator(service);length>0;--length)
+    {
+        medicament_print(*elem);
+        ++elem;
+    }
 }
 
 void printerrs(int cod_eroare){
@@ -67,10 +76,12 @@ void menu(Service* service){ // meniul afisat odata si apelat recursiv
            "c) Stergerea intregului stoc dintr-un medicament dat\n"
            "d) Vizualizare medicamente din stoc, ordonat dupa nume, cantitate (crescator/descrescator)\n"
            "e) Vizualizare lista de medicamente filtrate dupa un criteriu.\n"
-           "i) Iesire din aplicatie\n\nIntroduceti omanda:");
+           "i) Iesire din aplicatie\n\n");
+    read:
+    printf("Introduceti comanda:");
     char cmd;
     scanf("%c", &cmd);
-    if(isblank(cmd)) goto start;
+    if(isblank(cmd) || cmd=='\n' || cmd == '\0' || cmd == ' ') goto read;
     else if(cmd=='a') opt1(service);
     else if(cmd=='b') opt2(service);
     else if(cmd=='c') opt3(service);
@@ -82,8 +93,13 @@ void menu(Service* service){ // meniul afisat odata si apelat recursiv
     end:
     return;
 }
-void opt1(Service* service){}
+void opt1(Service* service){
+    Medicament medicament = medicament_scan();
+    int result = service_add(service, medicament);
+    if(result != SUCCESS)
+        printerrs(result);
+}
 void opt2(Service* service){}
 void opt3(Service* service){}
-void opt4(Service* service){}
+void opt4(Service* service){ service_print(service);}
 void opt5(Service* service){}

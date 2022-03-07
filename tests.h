@@ -8,6 +8,7 @@
 #include "domain.h"
 #include "validator.h"
 #include "repository.h"
+#include "service.h"
 
 #include "assert.h"
 #include "stdlib.h"
@@ -20,6 +21,8 @@ void test_validator();
 
 void test_repo_getters();
 void test_repo_setters();
+
+void test_service();
 
 void testall();
 

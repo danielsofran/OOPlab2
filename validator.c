@@ -44,6 +44,8 @@ int validate_cantitate(int cantitate){
 }
 int validate_madicament(Medicament medicament){
     // verific toate proprietatile medicamentului
+    // returnez un cod de eroare nenul daca exista erori
+    // sau SUCCESS daca nu exista
     char nume[LGMAX_NUME], cod[LGMAX_COD];
     medicament_get_nume(medicament, nume);
     medicament_get_cod(medicament, cod);

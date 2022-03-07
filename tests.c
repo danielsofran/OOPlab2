@@ -74,7 +74,7 @@ void test_repo_getters(){ // testez getterii
     assert(repository_get_length(repository) == 0);
     assert(repository_get_capacity(repository) == LENGTHMAX);
 
-    Medicament medicament = repository_get_element_at(repository, 1), mnull = {};
+    Medicament medicament = repository_get_element_at(repository, 1);
     assert(IS_ERROR(OUT_OF_RANGE));
     CLEAR_ERRORS;
 
@@ -114,6 +114,30 @@ void test_repo_setters(){
     CLEAR_ERRORS;
 }
 
+void test_service()
+{
+    Repository repository = repository_create();
+    Service service = service_create(repository);
+    Medicament m1 = medicament_create_default(), m2 = medicament_create("1234", "Fasconal", 30.0, 10);
+    assert(service_length(service) == 0);
+    assert(service_iterator(&service) == NULL);
+    // un elem
+    int result = service_add(&service, m2);
+    assert(result == SUCCESS);
+    assert(service_length(service) == 1);
+    assert(medicament_eq(*service_iterator(&service), m2));
+    // 2 elemente de acelasi tip
+    medicament_set_cantitate(&m2, 5);
+    result = service_add(&service, m2);
+    assert(result == SUCCESS);
+    assert(service_length(service) == 1);
+    // alt elem diferit
+    medicament_set_cod(&m2, "abc");
+    result = service_add(&service, m2);
+    assert(result == SUCCESS);
+    assert(service_length(service) == 2);
+}
+
 void testall() { // apelez toate testele
     test_medicament_getters();
     test_medicament_setters();
@@ -121,4 +145,5 @@ void testall() { // apelez toate testele
     test_repo_getters();
     test_medicament_externs();
     test_repo_setters();
+    test_service();
 }
