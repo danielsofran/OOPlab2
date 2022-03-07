@@ -31,6 +31,7 @@ void repository_set_element_at(Repository*, int, Medicament); // indexer set
 
 void repository_add(Repository*, Medicament); // append
 int repository_index_of(Repository, Medicament); // find
+int repository_index_of_cod(Repository, char*); // find pe cod
 
 //void repository_realloc(Repository*); // realocarea spatiului daca apar depasiri
 //void repository_delete(Repository*); // destructor

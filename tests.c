@@ -82,10 +82,14 @@ void test_repo_getters(){ // testez getterii
     repository.length=1;
     repository.medicamente[0] = medicament;
     assert(medicament_eq(medicament_create_default(), repository_get_element_at(repository, 0)));
-    int index = repository_index_of(repository, medicament_create_default());
+    int index = repository_index_of(repository, medicament_create_default()),
+    index2 = repository_index_of_cod(repository, "0");
     assert(index == 0);
+    assert(index2 == 0);
     index = repository_index_of(repository, medicament_create("1", "2", 3.7, 4));
+    index2 = repository_index_of_cod(repository, "1");
     assert(index == NOT_FOUND);
+    assert(index2 == NOT_FOUND);
 }
 
 void test_repo_setters(){
@@ -118,11 +122,16 @@ void test_service()
 {
     Repository repository = repository_create();
     Service service = service_create(repository);
-    Medicament m1 = medicament_create_default(), m2 = medicament_create("1234", "Fasconal", 30.0, 10);
+    Medicament m1 = medicament_create_default(),
+    m2 = medicament_create("1234", "Fasconal", 30.0, 10);
     assert(service_length(service) == 0);
     assert(service_iterator(&service) == NULL);
+    // ADAUGARE
+    // eroare
+    int result = service_add(&service, m1);
+    assert(result != SUCCESS);
     // un elem
-    int result = service_add(&service, m2);
+    result = service_add(&service, m2);
     assert(result == SUCCESS);
     assert(service_length(service) == 1);
     assert(medicament_eq(*service_iterator(&service), m2));
@@ -136,6 +145,22 @@ void test_service()
     result = service_add(&service, m2);
     assert(result == SUCCESS);
     assert(service_length(service) == 2);
+
+    // MODIFICARE
+    result = service_modify(&service, "abc", "Fasconal", 30.0, "Parasinus", 25.0);
+    assert(result == SUCCESS);
+    result = service_modify(&service, "dac", "Fasconal", 30.0, "Parasinus", 25.0);
+    assert(result == NOT_FOUND);
+    result = service_modify(&service, "abc", "Fasconal", 30.0, "^%^&%*", 120.0);
+    assert(result == EROARE_NUME + EROARE_CONC);
+    result = service_modify(&service, "abc", "Fasconal", 30.0, "med", 120.0);
+    assert(result == EROARE_CONC);
+
+    // stergere cantitate
+    result = service_delete_cant(&service, "abc");
+    assert(result == SUCCESS);
+    result = service_delete_cant(&service, "dac");
+    assert(result == NOT_FOUND);
 }
 
 void testall() { // apelez toate testele

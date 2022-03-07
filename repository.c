@@ -75,3 +75,18 @@ int repository_index_of(Repository repository, Medicament medicament)
             return i;
     return NOT_FOUND;
 }
+
+int repository_index_of_cod(Repository repository, char* cod)
+{
+    // returnez pozitia pe care se afla un cod al unui medicament
+    // NOT_FOUND daca nu exista
+    int n = repository_get_length(repository);
+    char cod_m[LGMAX_COD];
+    for(int i=0;i<n;++i) {
+        Medicament medicament = repository_get_element_at(repository, i);
+        medicament_get_cod(medicament, cod_m);
+        if (strcmp(cod, cod_m)==0)
+            return i;
+    }
+    return NOT_FOUND;
+}

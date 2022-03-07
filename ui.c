@@ -12,6 +12,20 @@ void medicament_print(Medicament medicament){ // afiseaza un medicament pe ecran
            cod, nume, medicament_get_concentratie(medicament), medicament_get_cantitate(medicament));
 }
 
+void citire_conc(double* nr)
+{// citire nr
+    char* endptr;
+    char sconc[10];
+    printf("Concentratie:");
+    scanf("%s", sconc);
+    *nr = strtod(sconc, &endptr);
+    if(IS_ERROR(ERANGE)) {
+        printf("Concentratie introdusa gresit!\n");
+        CLEAR_ERRORS;
+        *nr = EROARE_CONC;
+    }
+}
+
 Medicament medicament_scan(){ // citire date medicament de la tastatura
     char nume[LGMAX_NUME], cod[LGMAX_COD], scant[10], sconc[10];
     double conc;
@@ -43,14 +57,11 @@ Medicament medicament_scan(){ // citire date medicament de la tastatura
 }
 
 void service_print(Service* service)
-{
+{ // afisez medicamentele in stoc
     int length = service_length(*service);
-    printf("Numarul de medicamente: %d\n", length);
-    for(Medicament* elem= service_iterator(service);length>0;--length)
-    {
-        medicament_print(*elem);
-        ++elem;
-    }
+    for(Medicament* elem= service_iterator(service);length>0;--length, ++elem)
+        if(medicament_get_cantitate(*elem)>0)
+            medicament_print(*elem);
 }
 
 void printerrs(int cod_eroare){
@@ -94,12 +105,59 @@ void menu(Service* service){ // meniul afisat odata si apelat recursiv
     return;
 }
 void opt1(Service* service){
+    // prima optiune din meniu
     Medicament medicament = medicament_scan();
     int result = service_add(service, medicament);
     if(result != SUCCESS)
         printerrs(result);
+    else printf("Operatie efectuata cu succes!\n");
 }
-void opt2(Service* service){}
-void opt3(Service* service){}
-void opt4(Service* service){ service_print(service);}
-void opt5(Service* service){}
+
+void opt2(Service* service){
+    // a doua opt din meniu
+    char nume[LGMAX_NUME], nounume[LGMAX_NUME], cod[LGMAX_COD];
+    double conc, nouaconc;
+    printf("Cod:");
+    scanf("%s", cod);
+    printf("Nume:");
+    scanf("%s", nume);
+    citire_conc(&conc);
+    if(conc == EROARE_CONC) return;
+    // noi
+    printf("Nume nou:");
+    scanf("%s", nounume);
+    citire_conc(&nouaconc);
+    if(nouaconc == EROARE_CONC) return;
+    // service
+    int result = service_modify(service, cod, nume, conc, nounume, nouaconc);
+    if(result == SUCCESS)
+    {
+        printf("Operatie efectuata cu succes!\n");
+        return;
+    }
+    if(result == NOT_FOUND)
+    {
+        printf("Medicamentul nu a fost gasit!\n");
+        return;
+    }
+    printerrs(result);
+}
+
+void opt3(Service* service){
+    // a treia optiune din meniu
+    char cod[LGMAX_COD];
+    printf("Cod:");
+    scanf("%s", cod);
+    int result = service_delete_cant(service, cod);
+    if(result == NOT_FOUND)
+        printf("Medicamentul nu a fost gasit!\n");
+    else printf("Operatie efectuata cu succes!\n");
+}
+
+void opt4(Service* service){
+    // a patra optiune din meniu
+    service_print(service);
+}
+void opt5(Service* service){
+    // a cincea optiune din meniu
+}

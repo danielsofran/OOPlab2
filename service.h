@@ -20,5 +20,6 @@ Service service_create(Repository);
 int service_length(Service);
 Medicament* service_iterator(Service*);
 int service_add(Service*, Medicament);
-
+int service_modify(Service*, char*, char*, double, char*, double);
+int service_delete_cant(Service*, char*);
 #endif //LAB2_SERVICE_H
