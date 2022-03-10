@@ -1,0 +1,96 @@
+        -:    0:Source:C:/Desktop/OOP/lab2/repository.c
+        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\repository.c.gcno
+        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\repository.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 05.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#include "repository.h"
+        -:    6:
+        4:    7:Repository repository_create(){ // creez un repository vid de capacitate LENGTHMAX
+        -:    8:    Repository repository;
+        4:    9:    repository.capacity = LENGTHMAX;
+        4:   10:    repository.length = 0;
+        -:   11:    //repository.medicamente = ALLOC(Medicament, LENGTHMAX);
+        4:   12:    return repository;
+        -:   13:}
+        -:   14:
+       20:   15:int repository_get_length(Repository repository){
+        -:   16:    // returneaza numarul de elemente dintr-un repo transmis ca parametru
+       20:   17:    return repository.length;
+        -:   18:}
+        1:   19:int repository_get_capacity(Repository repository) {
+        -:   20:    // returneaza capaitatea unui repo
+        1:   21:    return repository.capacity;
+        -:   22:}
+       21:   23:Medicament repository_get_element_at(Repository repository, int index) {
+        -:   24:    // returneaza elementul de tip Medicament de la pozitia index
+        -:   25:    // seteaza eroarea OUT_OF_RANGE daca index >= length sau index < 0
+       21:   26:    if(index>=0 && index<repository.length)
+       20:   27:        return repository.medicamente[index];
+        1:   28:    SET_ERROR(OUT_OF_RANGE);
+        1:   29:    return medicament_create_default();
+        -:   30:}
+        -:   31:
+        3:   32:void repository_set_length(Repository* repository, int length) {
+        -:   33:    /**
+        -:   34:     * repository: pointer catre un repo
+        -:   35:     * length: lungimea noua
+        -:   36:     * seteaza lungimea repo ului la length
+        -:   37:     */
+        3:   38:    if(length<=repository->capacity) repository->length = length;
+        1:   39:    else SET_ERROR(INSUFFICIENT_CAPACITY);
+        3:   40:}
+        5:   41:void repository_set_element_at(Repository* repository, int index, Medicament medicament) {
+        -:   42:    /**
+        -:   43:     * repository: pointer catre un repo
+        -:   44:     * index: index-ul care va fi modificat repo
+        -:   45:     * medicament: o instanta a structurii Medicament
+        -:   46:     * seteaza eroarea OUT_OF_RANGE in cazul in care index >= length sau index < 0
+        -:   47:     */
+        5:   48:    if(index<repository->length && index >=0)
+        4:   49:        repository->medicamente[index] = medicament;
+        1:   50:    else SET_ERROR(OUT_OF_RANGE);
+        5:   51:}
+        -:   52:
+        4:   53:void repository_add(Repository* repository, Medicament medicament){
+        -:   54:    /**
+        -:   55:     * repository: pointer catre un repo
+        -:   56:     * medicament: o instanta a structurii Medicament
+        -:   57:     * adauga medicamentul la sfarsitul repo-ului
+        -:   58:     * seteaza eroarea CONTAINER_FULL in cazul in care in container nu mai pot fi adaugate elemente
+        -:   59:     */
+        4:   60:    if(repository->length >= repository->capacity) {
+        1:   61:        SET_ERROR(OUT_OF_RANGE);
+        1:   62:        return;
+        -:   63:        //repository_realloc(repository);
+        -:   64:    }
+        3:   65:    repository->medicamente[repository->length++] = medicament;
+        -:   66:}
+        -:   67:
+        7:   68:int repository_index_of(Repository repository, Medicament medicament)
+        -:   69:{
+        -:   70:    // returnez pozitia pe care se afla un medicament
+        -:   71:    // NOT_FOUND daca nu exista
+        7:   72:    int n = repository_get_length(repository);
+       12:   73:    for(int i=0;i<n;++i)
+        8:   74:        if(medicament_eq(medicament, repository_get_element_at(repository, i)))
+        3:   75:            return i;
+        4:   76:    return NOT_FOUND;
+        -:   77:}
+        -:   78:
+        4:   79:int repository_index_of_cod(Repository repository, char* cod)
+        -:   80:{
+        -:   81:    // returnez pozitia pe care se afla un cod al unui medicament
+        -:   82:    // NOT_FOUND daca nu exista
+        4:   83:    int n = repository_get_length(repository);
+        -:   84:    char cod_m[LGMAX_COD];
+        8:   85:    for(int i=0;i<n;++i) {
+        6:   86:        Medicament medicament = repository_get_element_at(repository, i);
+        6:   87:        medicament_get_cod(medicament, cod_m);
+        6:   88:        if (strcmp(cod, cod_m)==0)
+        2:   89:            return i;
+        -:   90:    }
+        2:   91:    return NOT_FOUND;
+        -:   92:}

@@ -1,0 +1,77 @@
+        -:    0:Source:C:/Desktop/OOP/lab2/service.c
+        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\service.c.gcno
+        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\service.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 05.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#include "service.h"
+        -:    6:
+        2:    7:Service service_create(Repository repository){ // creeaza si returneaza un service pe baza de repository
+        -:    8:    Service service;
+        2:    9:    service.repository = repository;
+        2:   10:    return service;
+        -:   11:}
+        -:   12:
+        6:   13:int service_length(Service service)
+        -:   14:{ // nr de medicamente
+        6:   15:    return repository_get_length(service.repository);
+        -:   16:}
+        -:   17:
+        2:   18:Medicament* service_iterator(Service* service)
+        -:   19:{// pointer catre primul element al repo-ului din service
+        2:   20:    if(service_length(*service) == 0)
+        1:   21:        return NULL;
+        1:   22:    return service->repository.medicamente;
+        -:   23:}
+        -:   24:
+        4:   25:int service_add(Service* service, Medicament medicament){ // adaug datele la service, returnez codul de eroare sau succes
+        -:   26:    // 1. validez
+        4:   27:    int cod_eroare = validate_madicament(medicament);
+        4:   28:    if(cod_eroare != SUCCESS) return cod_eroare;
+        -:   29:    // 2. adaug
+        3:   30:    int index = repository_index_of(service->repository, medicament);
+        3:   31:    if(index == NOT_FOUND) {
+        2:   32:        repository_add(&(service->repository), medicament);
+        2:   33:        return SUCCESS;
+        -:   34:    }
+        -:   35:    else{
+        1:   36:        Medicament elem = repository_get_element_at(service->repository, index);
+        1:   37:        int cant = medicament_get_cantitate(elem);
+        1:   38:        medicament_set_cantitate(&elem, cant+ medicament_get_cantitate(medicament));
+        1:   39:        repository_set_element_at(&(service->repository), index, elem);
+        1:   40:        return SUCCESS;
+        -:   41:    }
+        -:   42:}
+        -:   43:
+        4:   44:int service_modify(Service* service, char* cod, char* nume, double conc, char* nounume, double nouaconc)
+        -:   45:{ // actualizez nume si conc unui medicament la nounume si nouaconc
+        -:   46:    // returnez NOT_FOUND daca nu a putut fi gasit
+        -:   47:    // returnez cod de eroare in caz ca datele de intrare nu sunt corecte
+        -:   48:    // returnez SUCCESS daca operatia a fost efectuata
+        4:   49:    Medicament medicament = medicament_create(cod, nume, conc, 1);
+        4:   50:    int result = validate_madicament(medicament);
+       4*:   51:    if(result != SUCCESS) return result;
+        4:   52:    result = validate_nume(nounume) + validate_concentratie(nouaconc);
+        4:   53:    if(result != SUCCESS) return result;
+        -:   54:
+        2:   55:    int index = repository_index_of(service->repository, medicament);
+        2:   56:    if(index == NOT_FOUND) return NOT_FOUND;
+        1:   57:    medicament = repository_get_element_at(service->repository, index);
+        1:   58:    medicament_set_nume(&medicament, nounume);
+        1:   59:    medicament_set_concentratie(&medicament, nouaconc);
+        1:   60:    repository_set_element_at(&(service->repository), index, medicament);
+        1:   61:    return SUCCESS;
+        -:   62:}
+        -:   63:
+        2:   64:int service_delete_cant(Service* service, char* cod)
+        -:   65:{// sterg stocul unui medicament si returnez SUCCESS
+        -:   66:    // returnez NOT_FOUND in cazul in care nu exista
+        2:   67:    int index = repository_index_of_cod(service->repository, cod);
+        2:   68:    if(index == NOT_FOUND) return NOT_FOUND;
+        1:   69:    Medicament medicament = repository_get_element_at(service->repository, index);
+        1:   70:    medicament_set_cantitate(&medicament, 0);
+        1:   71:    repository_set_element_at(&(service->repository), index, medicament);
+        1:   72:    return SUCCESS;
+        -:   73:}

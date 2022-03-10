@@ -1,0 +1,60 @@
+        -:    0:Source:C:/Desktop/OOP/lab2/validator.c
+        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\validator.c.gcno
+        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\validator.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 05.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#include "validator.h"
+        -:    6:
+       12:    7:int validate_cod(char* cod){
+        -:    8:    // verific ca codul sa fie strict alfanumeric
+        -:    9:    // daca valoarea este invalida, returnez o eroare specifica
+        -:   10:    // altfel, returnez VALIDATOR_OK
+       12:   11:    if(strlen(cod) == 0)
+        2:   12:        return EROARE_COD;
+       43:   13:    for(int i=0; cod[i]; ++i)
+       34:   14:        if(!isalnum(cod[i]))
+        1:   15:            return EROARE_COD;
+        9:   16:    return VALIDATOR_OK;
+        -:   17:}
+       16:   18:int validate_nume(char* nume){
+        -:   19:    // verifica ca nume sa contina doar litere si spatii
+        -:   20:    // daca valoarea este invalida, returnez o eroare specifica
+        -:   21:    // altfel, returnez VALIDATOR_OK
+       16:   22:    if(strlen(nume) == 0)
+        1:   23:        return EROARE_NUME;
+      118:   24:    for(int i=0; nume[i]; ++i)
+      105:   25:        if(!isalpha(nume[i]) && !isblank(nume[i]))
+        2:   26:            return EROARE_NUME;
+       13:   27:    return VALIDATOR_OK;
+        -:   28:}
+       16:   29:int validate_concentratie(double concentratie){
+        -:   30:    // verific daca concentratia este sau nu un procent pozitiv
+        -:   31:    // daca valoarea este invalida, returnez o eroare specifica
+        -:   32:    // altfel, returnez VALIDATOR_OK
+       16:   33:    if(concentratie<=0 || concentratie>100.0)
+        6:   34:        return EROARE_CONC;
+       10:   35:    return VALIDATOR_OK;
+        -:   36:}
+       11:   37:int validate_cantitate(int cantitate){
+        -:   38:    // verific daca cantitatea e nr pozitiv
+        -:   39:    // daca valoarea este invalida, returnez o eroare specifica
+        -:   40:    // altfel, returnez VALIDATOR_OK
+       11:   41:    if(cantitate > 0)
+        8:   42:        return VALIDATOR_OK;
+        3:   43:    return EROARE_CANT;
+        -:   44:}
+        9:   45:int validate_madicament(Medicament medicament){
+        -:   46:    // verific toate proprietatile medicamentului
+        -:   47:    // returnez un cod de eroare nenul daca exista erori
+        -:   48:    // sau SUCCESS daca nu exista
+        -:   49:    char nume[LGMAX_NUME], cod[LGMAX_COD];
+        9:   50:    medicament_get_nume(medicament, nume);
+        9:   51:    medicament_get_cod(medicament, cod);
+        9:   52:    return  validate_cod(cod) +
+        9:   53:            validate_nume(nume) +
+       18:   54:            validate_concentratie(medicament_get_concentratie(medicament)) +
+        9:   55:            validate_cantitate(medicament_get_cantitate(medicament));
+        -:   56:}

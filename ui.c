@@ -1,10 +1,6 @@
-//
-// Created by Daniel on 05.03.2022.
-//
-
 #include "ui.h"
 
-void medicament_print(Medicament medicament){ // afiseaza un medicament pe ecran
+void medicament_print(Medicament medicament){
     char nume[LGMAX_NUME], cod[LGMAX_COD];
     medicament_get_nume(medicament, nume);
     medicament_get_cod(medicament, cod);
@@ -13,7 +9,7 @@ void medicament_print(Medicament medicament){ // afiseaza un medicament pe ecran
 }
 
 void citire_conc(double* nr)
-{// citire nr
+{
     char* endptr;
     char sconc[10];
     printf("Concentratie:");
@@ -26,7 +22,7 @@ void citire_conc(double* nr)
     }
 }
 
-Medicament medicament_scan(){ // citire date medicament de la tastatura
+Medicament medicament_scan(){
     char nume[LGMAX_NUME], cod[LGMAX_COD], scant[10], sconc[10];
     double conc;
     int cant=0;
@@ -57,7 +53,7 @@ Medicament medicament_scan(){ // citire date medicament de la tastatura
 }
 
 void service_print(Service* service)
-{ // afisez medicamentele in stoc
+{
     int length = service_length(*service);
     for(Medicament* elem= service_iterator(service);length>0;--length, ++elem)
         if(medicament_get_cantitate(*elem)>0)
@@ -65,7 +61,6 @@ void service_print(Service* service)
 }
 
 void printerrs(int cod_eroare){
-    // iau erorile si le afisez
     if(cod_eroare>=EROARE_CANT)
         printf("Cantitatea introdusa gresit!\n"),
         cod_eroare -= EROARE_CANT;
@@ -80,7 +75,7 @@ void printerrs(int cod_eroare){
         cod_eroare -= EROARE_COD;
 }
 
-void menu(Service* service){ // meniul afisat odata si apelat recursiv
+void menu(Service* service){
     start:
     printf("\tMeniu:\n\na) Adaugare de noi medicamente. Daca medicamentul este deja in stoc trebuie actualizat cantitatea\n"
            "b) Actualizare medicamente (modificare nume, concentratie pentru un medicament din stoc)\n"
@@ -105,7 +100,6 @@ void menu(Service* service){ // meniul afisat odata si apelat recursiv
     return;
 }
 void opt1(Service* service){
-    // prima optiune din meniu
     Medicament medicament = medicament_scan();
     int result = service_add(service, medicament);
     if(result != SUCCESS)
@@ -114,7 +108,6 @@ void opt1(Service* service){
 }
 
 void opt2(Service* service){
-    // a doua opt din meniu
     char nume[LGMAX_NUME], nounume[LGMAX_NUME], cod[LGMAX_COD];
     double conc, nouaconc;
     printf("Cod:");
@@ -144,7 +137,6 @@ void opt2(Service* service){
 }
 
 void opt3(Service* service){
-    // a treia optiune din meniu
     char cod[LGMAX_COD];
     printf("Cod:");
     scanf("%s", cod);
@@ -155,9 +147,8 @@ void opt3(Service* service){
 }
 
 void opt4(Service* service){
-    // a patra optiune din meniu
     service_print(service);
 }
 void opt5(Service* service){
-    // a cincea optiune din meniu
+
 }

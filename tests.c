@@ -4,7 +4,7 @@
 
 #include "tests.h"
 
-void test_medicament_getters(){ // testez toti getterii
+void test_medicament_getters(){
     Medicament medicament = medicament_create_default();
     char nume[LGMAX_NUME], cod[LGMAX_COD];
     medicament_get_cod(medicament, cod);
@@ -23,7 +23,7 @@ void test_medicament_getters(){ // testez toti getterii
     assert(medicament_get_cantitate(medicament) == 10);
 }
 
-void test_medicament_setters(){ // testez toti setterii
+void test_medicament_setters(){
     Medicament medicament;
     medicament_set_cod(&medicament, "1234");
     medicament_set_nume(&medicament, "Fasconal");
@@ -39,7 +39,7 @@ void test_medicament_setters(){ // testez toti setterii
     assert(medicament_get_cantitate(medicament) == 10);
 }
 
-void test_medicament_externs(){ // testez operatiile externe
+void test_medicament_externs(){
     Medicament medicament1, medicament2 = medicament_create("1234", "Fasconal", 30.0, 10);
     medicament_set_cod(&medicament1, "1234");
     medicament_set_nume(&medicament1, "Fasconal");
@@ -69,7 +69,7 @@ void test_validator(){
     assert(validate_madicament(medicament) == 0b1101);
 }
 
-void test_repo_getters(){ // testez getterii
+void test_repo_getters(){
     Repository repository = repository_create();
     assert(repository_get_length(repository) == 0);
     assert(repository_get_capacity(repository) == LENGTHMAX);
@@ -163,7 +163,7 @@ void test_service()
     assert(result == NOT_FOUND);
 }
 
-void testall() { // apelez toate testele
+void testall() {
     test_medicament_getters();
     test_medicament_setters();
     test_validator();

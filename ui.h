@@ -10,16 +10,16 @@
 #pragma warning (disable: 4996)
 #include "service.h"
 
-void opt1(Service*);
-void opt2(Service*);
-void opt3(Service*);
-void opt4(Service*);
-void opt5(Service*);
-void menu(Service*);
+void opt1(Service*); // functionalitate adaugare medicament
+void opt2(Service*); // functionalitate actualizare nume si concentratie
+void opt3(Service*); // functionalitate stergere stoc la un medicament
+void opt4(Service*); // functionalitate afisare medicamente in stoc
+void opt5(Service*); // functionalitate sortare
+void menu(Service*); // meniul afisat
 
-void medicament_print(Medicament);
-Medicament medicament_scan();
-void service_print(Service*);
-void print_errs(int);
+void medicament_print(Medicament); // afiseaza un medicament pe ecran
+Medicament medicament_scan(); // citire date medicament de la tastatura, returneaza Medicamentul citit
+void service_print(Service*); // afisez medicamentele in stoc
+void print_errs(int); // afisez erorile corespunzatoare codurilor de eroare
 
 #endif //LAB2_UI_H
