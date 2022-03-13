@@ -9,24 +9,24 @@
 #include "validator.h"
 #include "repository.h"
 
-//#define MEDICAMENT_TYPES char*, char*, double, int
-//#define MEDICAMENT_ARGS char* cod, char* nume, double concentratie, int cantitate
+//#define MEDICAMENT_TYPES
+//#define MEDICAMENT_ARGS
 
 typedef struct{
-    Repository repository;
+    Repository* repository;
 } Service;
 
 // creeaza si returneaza un service pe baza de repository
-Service service_create(Repository);
+Service* service_create(Repository*);
 
 // nr de medicamente
-int service_length(Service);
+int service_length(Service*);
 
-// pointer catre primul element al repo-ului din service
-Medicament* service_iterator(Service*);
+// returneaza adresa elementului de indice i din r
+Medicament* service_element(Service*, int);
 
 // adaug datele la service, returnez codul de eroare sau succes
-int service_add(Service*, Medicament);
+int service_add(Service*, char*, char*, double, int);
 
 // actualizez nume si conc unui medicament la nounume si nouaconc
 // returnez NOT_FOUND daca nu a putut fi gasit
@@ -37,5 +37,8 @@ int service_modify(Service*, char*, char*, double, char*, double);
 // sterg stocul unui medicament si returnez SUCCESS
 // returnez NOT_FOUND in cazul in care nu exista
 int service_delete_cant(Service*, char*);
+
+// destructor
+void service_delete(Service*);
 
 #endif //LAB2_SERVICE_H

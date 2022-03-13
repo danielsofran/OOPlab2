@@ -4,46 +4,46 @@
 
 #include "service.h"
 
-Service service_create(Repository repository){
-    Service service;
-    service.repository = repository;
+Service* service_create(Repository* repository){
+    Service* service = malloc(sizeof(Service));
+    service->repository = repository;
     return service;
 }
 
-int service_length(Service service)
+int service_length(Service* service)
 {
-    return repository_get_length(service.repository);
+    return repository_get_length(service->repository);
 }
 
-Medicament* service_iterator(Service* service)
+Medicament* service_element(Service* service, int index)
 {
-    if(service_length(*service) == 0)
-        return NULL;
-    return service->repository.medicamente;
+    if(service_length(service) == 0) return NULL;
+    return service->repository->elements[index];
 }
 
-int service_add(Service* service, Medicament medicament){
-    // 1. validez
+int service_add(Service* service, char* cod, char* nume, double concentratie, int cantitate){
+    // 1. creez
+    Medicament* medicament = medicament_create(cod, nume, concentratie, cantitate);
+    // 2. validez
     int cod_eroare = validate_madicament(medicament);
     if(cod_eroare != SUCCESS) return cod_eroare;
-    // 2. adaug
+    // 3. adaug
     int index = repository_index_of(service->repository, medicament);
     if(index == NOT_FOUND) {
-        repository_add(&(service->repository), medicament);
+        repository_add(service->repository, medicament);
         return SUCCESS;
     }
     else{
-        Medicament elem = repository_get_element_at(service->repository, index);
+        Medicament* elem = repository_get_element_at(service->repository, index);
         int cant = medicament_get_cantitate(elem);
-        medicament_set_cantitate(&elem, cant+ medicament_get_cantitate(medicament));
-        repository_set_element_at(&(service->repository), index, elem);
+        medicament_set_cantitate(elem, cant+ medicament_get_cantitate(medicament));
         return SUCCESS;
     }
 }
 
 int service_modify(Service* service, char* cod, char* nume, double conc, char* nounume, double nouaconc)
 {
-    Medicament medicament = medicament_create(cod, nume, conc, 1);
+    Medicament* medicament = medicament_create(cod, nume, conc, 1);
     int result = validate_madicament(medicament);
     if(result != SUCCESS) return result;
     result = validate_nume(nounume) + validate_concentratie(nouaconc);
@@ -52,18 +52,29 @@ int service_modify(Service* service, char* cod, char* nume, double conc, char* n
     int index = repository_index_of(service->repository, medicament);
     if(index == NOT_FOUND) return NOT_FOUND;
     medicament = repository_get_element_at(service->repository, index);
-    medicament_set_nume(&medicament, nounume);
-    medicament_set_concentratie(&medicament, nouaconc);
-    repository_set_element_at(&(service->repository), index, medicament);
+    medicament_set_nume(medicament, nounume);
+    medicament_set_concentratie(medicament, nouaconc);
+    //repository_set_element_at(service->repository, index, medicament);
     return SUCCESS;
 }
 
 int service_delete_cant(Service* service, char* cod)
 {
-    int index = repository_index_of_cod(service->repository, cod);
-    if(index == NOT_FOUND) return NOT_FOUND;
-    Medicament medicament = repository_get_element_at(service->repository, index);
-    medicament_set_cantitate(&medicament, 0);
-    repository_set_element_at(&(service->repository), index, medicament);
+    Medicament* medicament = NULL;
+    for(int i=0;i< service_length(service);++i)
+    {
+        medicament = service_element(service, i);
+        if(strcmp(medicament_get_cod(medicament), cod)==0)
+            break;
+        medicament = NULL;
+    }
+    if(medicament == NULL) return NOT_FOUND;
+    medicament_set_cantitate(medicament, 0);
     return SUCCESS;
+}
+
+void service_delete(Service* service)
+{
+    repository_delete(service->repository);
+    free(service);
 }

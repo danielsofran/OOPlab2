@@ -1,11 +1,12 @@
 #include "ui.h"
 
-void medicament_print(Medicament medicament){
-    char nume[LGMAX_NUME], cod[LGMAX_COD];
-    medicament_get_nume(medicament, nume);
-    medicament_get_cod(medicament, cod);
+void medicament_print(Medicament* medicament){
     printf("Cod: %s\tNume: %s\tConcentratie: %0.2f\tCantitate: %d\n",
-           cod, nume, medicament_get_concentratie(medicament), medicament_get_cantitate(medicament));
+           medicament_get_cod(medicament),
+           medicament_get_nume(medicament),
+           medicament_get_concentratie(medicament),
+           medicament_get_cantitate(medicament)
+    );
 }
 
 void citire_conc(double* nr)
@@ -22,7 +23,7 @@ void citire_conc(double* nr)
     }
 }
 
-Medicament medicament_scan(){
+Medicament* medicament_scan(){
     char nume[LGMAX_NUME], cod[LGMAX_COD], scant[10], sconc[10];
     double conc;
     int cant=0;
@@ -35,6 +36,16 @@ Medicament medicament_scan(){
     printf("Cantitate:");
     scanf("%s", scant);
     // convert strings to numeric
+    for(int i=0;sconc[i];++i)
+        if(!(isdigit(sconc[i]) || sconc[i]=='.')) {
+            printf("Concentratie introdusa gresit!\n");
+            return NULL;
+        }
+    for(int i=0;scant[i];++i)
+        if(!isdigit(scant[i])){
+            printf("Cantitate introdusa gresit!\n");
+            return NULL;
+        }
     char *endptr1, *endptr2;
     conc = strtod(sconc, &endptr1);
     if(IS_ERROR(ERANGE)) {
@@ -48,16 +59,15 @@ Medicament medicament_scan(){
         CLEAR_ERRORS;
         return medicament_create_default();
     }
-    Medicament rez = medicament_create(cod, nume, conc, cant);
+    Medicament* rez = medicament_create(cod, nume, conc, cant);
     return rez;
 }
 
 void service_print(Service* service)
 {
-    int length = service_length(*service);
-    for(Medicament* elem= service_iterator(service);length>0;--length, ++elem)
-        if(medicament_get_cantitate(*elem)>0)
-            medicament_print(*elem);
+    int length = service_length(service);
+    for(int i=0; i<length;++i)
+        medicament_print(service_element(service, i));
 }
 
 void printerrs(int cod_eroare){
@@ -100,8 +110,9 @@ void menu(Service* service){
     return;
 }
 void opt1(Service* service){
-    Medicament medicament = medicament_scan();
-    int result = service_add(service, medicament);
+    Medicament* medicament = medicament_scan();
+    int result = service_add(service, medicament_get_cod(medicament), medicament_get_nume(medicament),
+                             medicament_get_concentratie(medicament), medicament_get_cantitate(medicament));
     if(result != SUCCESS)
         printerrs(result);
     else printf("Operatie efectuata cu succes!\n");

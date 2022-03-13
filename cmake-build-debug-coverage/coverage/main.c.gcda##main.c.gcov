@@ -3,14 +3,12 @@
         -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\main.c.gcda
         -:    0:Runs:1
         -:    1:#include "tests.h"
-        -:    2:#include "ui.h"
+        -:    2://#include "ui.h"
         -:    3:
         1:    4:int main() {
         1:    5:    testall();
-        -:    6:    //Medicament medicament1 = medicament_create("123", "Fasconal", 30.0, 2);
-        -:    7:    //Medicament medicament2 = medicament_create("123c454g4", "Fasconal alb de casa", 70.234423, 2888);
-        1:    8:    Repository repository = repository_create();
-        1:    9:    Service s = service_create(repository);
-        -:   10:    //menu(&s);
-        1:   11:    return 0;
-        -:   12:}
+        -:    6:    //Repository repository = repository_create();
+        -:    7:    //Service s = service_create(repository);
+        -:    8:    //menu(&s);
+        1:    9:    return 0;
+        -:   10:}

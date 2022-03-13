@@ -39,6 +39,6 @@ int validate_cantitate(int);
 // verific toate proprietatile medicamentului
 // returnez un cod de eroare nenul daca exista erori
 // sau SUCCESS daca nu exista
-int validate_madicament(Medicament);
+int validate_madicament(Medicament*);
 
 #endif //LAB2_VALIDATOR_H

@@ -17,8 +17,8 @@ void opt4(Service*); // functionalitate afisare medicamente in stoc
 void opt5(Service*); // functionalitate sortare
 void menu(Service*); // meniul afisat
 
-void medicament_print(Medicament); // afiseaza un medicament pe ecran
-Medicament medicament_scan(); // citire date medicament de la tastatura, returneaza Medicamentul citit
+void medicament_print(Medicament*); // afiseaza un medicament pe ecran
+Medicament* medicament_scan(); // citire date medicament de la tastatura, returneaza Medicamentul citit
 void service_print(Service*); // afisez medicamentele in stoc
 void print_errs(int); // afisez erorile corespunzatoare codurilor de eroare
 

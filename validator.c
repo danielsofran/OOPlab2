@@ -5,6 +5,8 @@
 #include "validator.h"
 
 int validate_cod(char* cod){
+    if(cod == NULL)
+        return EROARE_COD;
     if(strlen(cod) == 0)
         return EROARE_COD;
     for(int i=0; cod[i]; ++i)
@@ -13,6 +15,8 @@ int validate_cod(char* cod){
     return VALIDATOR_OK;
 }
 int validate_nume(char* nume){
+    if(nume==NULL)
+        return EROARE_NUME;
     if(strlen(nume) == 0)
         return EROARE_NUME;
     for(int i=0; nume[i]; ++i)
@@ -30,12 +34,9 @@ int validate_cantitate(int cantitate){
         return VALIDATOR_OK;
     return EROARE_CANT;
 }
-int validate_madicament(Medicament medicament){
-    char nume[LGMAX_NUME], cod[LGMAX_COD];
-    medicament_get_nume(medicament, nume);
-    medicament_get_cod(medicament, cod);
-    return  validate_cod(cod) |
-            validate_nume(nume) |
+int validate_madicament(Medicament* medicament){
+    return  validate_cod(medicament_get_cod(medicament)) |
+            validate_nume(medicament_get_nume(medicament)) |
             validate_concentratie(medicament_get_concentratie(medicament)) |
             validate_cantitate(medicament_get_cantitate(medicament));
 }
