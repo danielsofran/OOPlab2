@@ -113,6 +113,7 @@ void opt1(Service* service){
     Medicament* medicament = medicament_scan();
     int result = service_add(service, medicament_get_cod(medicament), medicament_get_nume(medicament),
                              medicament_get_concentratie(medicament), medicament_get_cantitate(medicament));
+    medicament_delete(medicament);
     if(result != SUCCESS)
         printerrs(result);
     else printf("Operatie efectuata cu succes!\n");
