@@ -1,3 +1,3 @@
-C:/Desktop/OOP/lab2/cmake-build-debug/CMakeFiles/lab2.dir
-C:/Desktop/OOP/lab2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Desktop/OOP/lab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug/CMakeFiles/lab2.dir

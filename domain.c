@@ -78,7 +78,8 @@ void medicament_sterge_stoc(Medicament* medicament){
 
 void medicament_delete(Medicament* medicament)
 {
-    free(medicament->cod);
-    free(medicament->nume);
+    if(medicament->cod != NULL) free(medicament->cod);
+    if(medicament->nume != NULL) free(medicament->nume);
     free(medicament);
+    medicament=NULL;
 }

@@ -26,7 +26,10 @@ int service_add(Service* service, char* cod, char* nume, double concentratie, in
     Medicament* medicament = medicament_create(cod, nume, concentratie, cantitate);
     // 2. validez
     int cod_eroare = validate_madicament(medicament);
-    if(cod_eroare != SUCCESS) return cod_eroare;
+    if(cod_eroare != SUCCESS) {
+        medicament_delete(medicament);
+        return cod_eroare;
+    }
     // 3. adaug
     int index = repository_index_of(service->repository, medicament);
     if(index == NOT_FOUND) {
@@ -34,9 +37,11 @@ int service_add(Service* service, char* cod, char* nume, double concentratie, in
         return SUCCESS;
     }
     else{
+        int cant_to_add = medicament_get_cantitate(medicament);
+        medicament_delete(medicament);
         Medicament* elem = repository_get_element_at(service->repository, index);
         int cant = medicament_get_cantitate(elem);
-        medicament_set_cantitate(elem, cant+ medicament_get_cantitate(medicament));
+        medicament_set_cantitate(elem, cant+cant_to_add);
         return SUCCESS;
     }
 }
@@ -45,11 +50,12 @@ int service_modify(Service* service, char* cod, char* nume, double conc, char* n
 {
     Medicament* medicament = medicament_create(cod, nume, conc, 1);
     int result = validate_madicament(medicament);
-    if(result != SUCCESS) return result;
+    if(result != SUCCESS) { medicament_delete(medicament); return result;}
     result = validate_nume(nounume) + validate_concentratie(nouaconc);
-    if(result != SUCCESS) return result;
+    if(result != SUCCESS) { medicament_delete(medicament); return result;}
 
     int index = repository_index_of(service->repository, medicament);
+    medicament_delete(medicament);
     if(index == NOT_FOUND) return NOT_FOUND;
     medicament = repository_get_element_at(service->repository, index);
     medicament_set_nume(medicament, nounume);
@@ -75,6 +81,11 @@ int service_delete_cant(Service* service, char* cod)
 
 void service_delete(Service* service)
 {
+    for(int i=0;i< service_length(service);++i)
+    {
+        Medicament* medicament = service_element(service, i);
+        if(medicament!=NULL) medicament_delete(medicament);
+    }
     repository_delete(service->repository);
     free(service);
 }

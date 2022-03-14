@@ -12,6 +12,7 @@ void test_medicament_getters(){
     assert(medicament_get_concentratie(medicament) == 0.0);
     assert(medicament_get_cantitate(medicament) == 0);
 
+    medicament_delete(medicament);
     medicament = medicament_create("1234", "Fasconal", 30.0, 10);
     assert(strcmp(medicament_get_cod(medicament), "1234")==0);
     assert(strcmp(medicament_get_nume(medicament), "Fasconal")==0);
@@ -45,7 +46,7 @@ void test_medicament_externs(){
     medicament_set_concentratie(medicament1, 30.0);
     medicament_set_cantitate(medicament1, 10);
     assert(medicament_eq(medicament1, medicament2));
-    assert(!medicament_eq(medicament1, medicament_create_default()));
+    assert(medicament_eq(medicament1, medicament1));
 
     medicament_sterge_stoc(medicament1);
     assert(medicament_get_cantitate(medicament1) == 0);
@@ -84,13 +85,16 @@ void test_repo_getters(){
     medicament = medicament_create_default();
     repository->length=1;
     repository->elements[0] = medicament;
-    assert(medicament_eq(medicament_create_default(),
+    assert(medicament_eq(medicament,
                          repository_get_element_at(repository, 0)));
-    int index = repository_index_of(repository, medicament_create_default());
+    int index = repository_index_of(repository, medicament);
     assert(index == 0);
-    index = repository_index_of(repository, medicament_create("1", "2", 3.7, 4));
+    Medicament* med2 = medicament_create("1", "2", 3.7, 4);
+    index = repository_index_of(repository, med2);
     assert(index == NOT_FOUND);
 
+    medicament_delete(medicament);
+    medicament_delete(med2);
     repository_delete(repository);
 }
 
@@ -119,6 +123,8 @@ void test_repo_setters(){
     repository_set_length(repository, 100);
     repository_add(repository, m2);
 
+    medicament_delete(m1);
+    medicament_delete(m2);
     repository_delete(repository);
 }
 
@@ -126,8 +132,7 @@ void test_service()
 {
     Repository* repository = repository_create(medicament_eq);
     Service* service = service_create(repository);
-    Medicament *m1 = medicament_create_default(),
-    *m2 = medicament_create("1234", "Fasconal", 30.0, 10);
+    Medicament* m2 = medicament_create("1234", "Fasconal", 30.0, 10);
     assert(service_length(service) == 0);
     // ADAUGARE
     // eroare
@@ -164,6 +169,7 @@ void test_service()
     result = service_delete_cant(service, "dac");
     assert(result == NOT_FOUND);
 
+    medicament_delete(m2);
     service_delete(service);
 }
 
