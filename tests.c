@@ -170,6 +170,9 @@ void test_service()
     assert(result == NOT_FOUND);
 
     medicament_delete(m2);
+//    char* numeprt = ((Medicament*)service->repository->elements[1])->nume;
+//    free(numeprt);
+//    numeprt = NULL;
     service_delete(service);
 }
 

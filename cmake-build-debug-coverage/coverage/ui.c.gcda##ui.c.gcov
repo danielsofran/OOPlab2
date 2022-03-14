@@ -1,7 +1,8 @@
-        -:    0:Source:C:/Desktop/OOP/lab2/ui.c
-        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\ui.c.gcno
-        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\ui.c.gcda
+        -:    0:Source:/mnt/c/Desktop/CLionsProjects/OOPlab2/ui.c
+        -:    0:Graph:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/ui.c.gcno
+        -:    0:Data:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/ui.c.gcda
         -:    0:Runs:1
+        -:    0:Programs:1
         -:    1:#include "ui.h"
         -:    2:
     #####:    3:void medicament_print(Medicament* medicament){
@@ -90,14 +91,14 @@
     #####:   86:}
         -:   87:
     #####:   88:void menu(Service* service){
-    #####:   89:    start:
+        -:   89:    start:
     #####:   90:    printf("\tMeniu:\n\na) Adaugare de noi medicamente. Daca medicamentul este deja in stoc trebuie actualizat cantitatea\n"
         -:   91:           "b) Actualizare medicamente (modificare nume, concentratie pentru un medicament din stoc)\n"
         -:   92:           "c) Stergerea intregului stoc dintr-un medicament dat\n"
         -:   93:           "d) Vizualizare medicamente din stoc, ordonat dupa nume, cantitate (crescator/descrescator)\n"
         -:   94:           "e) Vizualizare lista de medicamente filtrate dupa un criteriu.\n"
         -:   95:           "i) Iesire din aplicatie\n\n");
-    #####:   96:    read:
+        -:   96:    read:
     #####:   97:    printf("Introduceti comanda:");
         -:   98:    char cmd;
     #####:   99:    scanf("%c", &cmd);
@@ -110,60 +111,61 @@
     #####:  106:    else if(cmd=='i') goto end;
     #####:  107:    else printf("Comanda invalida!\n\n");
     #####:  108:    goto start;
-    #####:  109:    end:
+        -:  109:    end:
     #####:  110:    return;
         -:  111:}
     #####:  112:void opt1(Service* service){
     #####:  113:    Medicament* medicament = medicament_scan();
     #####:  114:    int result = service_add(service, medicament_get_cod(medicament), medicament_get_nume(medicament),
         -:  115:                             medicament_get_concentratie(medicament), medicament_get_cantitate(medicament));
-    #####:  116:    if(result != SUCCESS)
-    #####:  117:        printerrs(result);
-    #####:  118:    else printf("Operatie efectuata cu succes!\n");
-    #####:  119:}
-        -:  120:
-    #####:  121:void opt2(Service* service){
-        -:  122:    char nume[LGMAX_NUME], nounume[LGMAX_NUME], cod[LGMAX_COD];
-        -:  123:    double conc, nouaconc;
-    #####:  124:    printf("Cod:");
-    #####:  125:    scanf("%s", cod);
-    #####:  126:    printf("Nume:");
-    #####:  127:    scanf("%s", nume);
-    #####:  128:    citire_conc(&conc);
-    #####:  129:    if(conc == EROARE_CONC) return;
-        -:  130:    // noi
-    #####:  131:    printf("Nume nou:");
-    #####:  132:    scanf("%s", nounume);
-    #####:  133:    citire_conc(&nouaconc);
-    #####:  134:    if(nouaconc == EROARE_CONC) return;
-        -:  135:    // service
-    #####:  136:    int result = service_modify(service, cod, nume, conc, nounume, nouaconc);
-    #####:  137:    if(result == SUCCESS)
-        -:  138:    {
-    #####:  139:        printf("Operatie efectuata cu succes!\n");
-    #####:  140:        return;
-        -:  141:    }
-    #####:  142:    if(result == NOT_FOUND)
-        -:  143:    {
-    #####:  144:        printf("Medicamentul nu a fost gasit!\n");
-    #####:  145:        return;
-        -:  146:    }
-    #####:  147:    printerrs(result);
-        -:  148:}
-        -:  149:
-    #####:  150:void opt3(Service* service){
-        -:  151:    char cod[LGMAX_COD];
-    #####:  152:    printf("Cod:");
-    #####:  153:    scanf("%s", cod);
-    #####:  154:    int result = service_delete_cant(service, cod);
-    #####:  155:    if(result == NOT_FOUND)
-    #####:  156:        printf("Medicamentul nu a fost gasit!\n");
-    #####:  157:    else printf("Operatie efectuata cu succes!\n");
-    #####:  158:}
-        -:  159:
-    #####:  160:void opt4(Service* service){
-    #####:  161:    service_print(service);
-    #####:  162:}
-    #####:  163:void opt5(Service* service){
-        -:  164:
-    #####:  165:}
+    #####:  116:    medicament_delete(medicament);
+    #####:  117:    if(result != SUCCESS)
+    #####:  118:        printerrs(result);
+    #####:  119:    else printf("Operatie efectuata cu succes!\n");
+    #####:  120:}
+        -:  121:
+    #####:  122:void opt2(Service* service){
+        -:  123:    char nume[LGMAX_NUME], nounume[LGMAX_NUME], cod[LGMAX_COD];
+        -:  124:    double conc, nouaconc;
+    #####:  125:    printf("Cod:");
+    #####:  126:    scanf("%s", cod);
+    #####:  127:    printf("Nume:");
+    #####:  128:    scanf("%s", nume);
+    #####:  129:    citire_conc(&conc);
+    #####:  130:    if(conc == EROARE_CONC) return;
+        -:  131:    // noi
+    #####:  132:    printf("Nume nou:");
+    #####:  133:    scanf("%s", nounume);
+    #####:  134:    citire_conc(&nouaconc);
+    #####:  135:    if(nouaconc == EROARE_CONC) return;
+        -:  136:    // service
+    #####:  137:    int result = service_modify(service, cod, nume, conc, nounume, nouaconc);
+    #####:  138:    if(result == SUCCESS)
+        -:  139:    {
+    #####:  140:        printf("Operatie efectuata cu succes!\n");
+    #####:  141:        return;
+        -:  142:    }
+    #####:  143:    if(result == NOT_FOUND)
+        -:  144:    {
+    #####:  145:        printf("Medicamentul nu a fost gasit!\n");
+    #####:  146:        return;
+        -:  147:    }
+    #####:  148:    printerrs(result);
+        -:  149:}
+        -:  150:
+    #####:  151:void opt3(Service* service){
+        -:  152:    char cod[LGMAX_COD];
+    #####:  153:    printf("Cod:");
+    #####:  154:    scanf("%s", cod);
+    #####:  155:    int result = service_delete_cant(service, cod);
+    #####:  156:    if(result == NOT_FOUND)
+    #####:  157:        printf("Medicamentul nu a fost gasit!\n");
+    #####:  158:    else printf("Operatie efectuata cu succes!\n");
+    #####:  159:}
+        -:  160:
+    #####:  161:void opt4(Service* service){
+    #####:  162:    service_print(service);
+    #####:  163:}
+    #####:  164:void opt5(Service* service){
+        -:  165:
+    #####:  166:}

@@ -1,7 +1,8 @@
-        -:    0:Source:C:/Desktop/OOP/lab2/validator.c
-        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\validator.c.gcno
-        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\validator.c.gcda
+        -:    0:Source:/mnt/c/Desktop/CLionsProjects/OOPlab2/validator.c
+        -:    0:Graph:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/validator.c.gcno
+        -:    0:Data:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/validator.c.gcda
         -:    0:Runs:1
+        -:    0:Programs:1
         -:    1://
         -:    2:// Created by Daniel on 05.03.2022.
         -:    3://
@@ -39,8 +40,8 @@
         3:   35:    return EROARE_CANT;
         -:   36:}
         9:   37:int validate_madicament(Medicament* medicament){
-        9:   38:    return  validate_cod(medicament_get_cod(medicament)) |
-        9:   39:            validate_nume(medicament_get_nume(medicament)) |
+       18:   38:    return  validate_cod(medicament_get_cod(medicament)) |
+       18:   39:            validate_nume(medicament_get_nume(medicament)) |
        18:   40:            validate_concentratie(medicament_get_concentratie(medicament)) |
         9:   41:            validate_cantitate(medicament_get_cantitate(medicament));
         -:   42:}

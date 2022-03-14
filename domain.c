@@ -23,7 +23,7 @@ Medicament* medicament_create(char* cod, char* nume, double concentratie, int ca
     }
     if(nume==NULL) medicament->nume = NULL;
     else {
-        medicament->nume = malloc(sizeof(char)*(strlen(nume)+1));
+        medicament->nume = malloc(sizeof(char) * (strlen(nume)+1));
         strcpy(medicament->nume, nume);
     }
     medicament->concentratie = concentratie;
@@ -45,10 +45,12 @@ int medicament_get_cantitate(Medicament* medicament){
 }
 
 void medicament_set_cod(Medicament* medicament, char* cod){
+    free(medicament->cod);
     medicament->cod = malloc(sizeof(char)*(strlen(cod)+1));
     strcpy(medicament->cod, cod);
 }
 void medicament_set_nume(Medicament* medicament, char* nume){
+    free(medicament->nume);
     medicament->nume = malloc(sizeof(char)*(strlen(nume)+1));
     strcpy(medicament->nume, nume);
 }

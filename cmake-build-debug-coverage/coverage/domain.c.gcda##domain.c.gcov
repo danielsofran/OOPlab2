@@ -1,7 +1,8 @@
-        -:    0:Source:C:/Desktop/OOP/lab2/domain.c
-        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\domain.c.gcno
-        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\domain.c.gcda
+        -:    0:Source:/mnt/c/Desktop/CLionsProjects/OOPlab2/domain.c
+        -:    0:Graph:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/domain.c.gcno
+        -:    0:Data:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/domain.c.gcda
         -:    0:Runs:1
+        -:    0:Programs:1
         -:    1://
         -:    2:// Created by Daniel on 05.03.2022.
         -:    3://
@@ -9,13 +10,13 @@
         -:    5:#include <math.h>
         -:    6:#include "domain.h"
         -:    7:
-        9:    8:Medicament* medicament_create_default(){
-        9:    9:    Medicament* medicament = malloc(sizeof(Medicament));
-        9:   10:    medicament->cod = NULL;
-        9:   11:    medicament->nume = NULL;
-        9:   12:    medicament->concentratie = 0.0;
-        9:   13:    medicament->cantitate = 0;
-        9:   14:    return medicament;
+        5:    8:Medicament* medicament_create_default(){
+        5:    9:    Medicament* medicament = malloc(sizeof(Medicament));
+        5:   10:    medicament->cod = NULL;
+        5:   11:    medicament->nume = NULL;
+        5:   12:    medicament->concentratie = 0.0;
+        5:   13:    medicament->cantitate = 0;
+        5:   14:    return medicament;
         -:   15:}
         -:   16:
        14:   17:Medicament* medicament_create(char* cod, char* nume, double concentratie, int cantitate){
@@ -67,22 +68,23 @@
        14:   63:    Medicament* medicament1 = (Medicament*)m1;
        14:   64:    Medicament* medicament2 = (Medicament*)m2;
        14:   65:    if(medicament1->cod == NULL || medicament2->cod == NULL) return medicament1->cod == medicament2->cod;
-        9:   66:    if(strcmp(medicament1->cod, medicament2->cod) !=0) return 0;
+       10:   66:    if(strcmp(medicament1->cod, medicament2->cod) !=0) return 0;
         -:   67:
-       5*:   68:    if(medicament1->nume == NULL || medicament2->cod == NULL) return medicament1->nume == medicament2->nume;
-       5*:   69:    if(strcmp(medicament1->nume, medicament2->nume) !=0) return 0;
+        6:   68:    if(medicament1->nume == NULL || medicament2->cod == NULL) return medicament1->nume == medicament2->nume;
+        6:   69:    if(strcmp(medicament1->nume, medicament2->nume) !=0) return 0;
         -:   70:
-       5*:   71:    if(fabs(medicament1->concentratie-medicament2->concentratie)>=1e-6) return 0;
-        5:   72:    return 1;
+        6:   71:    if(fabs(medicament1->concentratie-medicament2->concentratie)>=1e-6) return 0;
+        6:   72:    return 1;
         -:   73:}
         -:   74:
         1:   75:void medicament_sterge_stoc(Medicament* medicament){
         1:   76:    medicament->cantitate = 0;
         1:   77:}
         -:   78:
-        5:   79:void medicament_delete(Medicament* medicament)
+       19:   79:void medicament_delete(Medicament* medicament)
         -:   80:{
-        5:   81:    free(medicament->cod);
-        5:   82:    free(medicament->nume);
-        5:   83:    free(medicament);
-        5:   84:}
+       19:   81:    if(medicament->cod != NULL) free(medicament->cod);
+       19:   82:    if(medicament->nume != NULL) free(medicament->nume);
+       19:   83:    free(medicament);
+       19:   84:    medicament=NULL;
+       19:   85:}
