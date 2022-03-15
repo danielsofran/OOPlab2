@@ -1,6 +1,6 @@
         -:    0:Source:/mnt/c/Desktop/CLionsProjects/OOPlab2/main.c
-        -:    0:Graph:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/main.c.gcno
-        -:    0:Data:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/main.c.gcda
+        -:    0:Graph:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/main.c.gcno
+        -:    0:Data:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/main.c.gcda
         -:    0:Runs:1
         -:    0:Programs:1
         -:    1:#include "tests.h"

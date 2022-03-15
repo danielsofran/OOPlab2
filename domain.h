@@ -11,6 +11,11 @@
 #define LGMAX_COD 20+1
 #define LGMAX_NUME 30+1
 
+#define LESS -1
+#define EQUAL 0
+#define GREATER 1
+#define INFILTER 1
+
 typedef struct {
     char* cod;
     char* nume;
@@ -42,9 +47,45 @@ void medicament_set_concentratie(Medicament*, double); // setter concentratie
 void medicament_set_cantitate(Medicament*, int); // setter cantitate
 
 // verifica daca proprietatile celor 2 medicamente date au aceleasi campuri, exceptie facand cantitatea
+// returneaza 1 daca medicamentele sunt egale si 0 altfel
 int medicament_eq(void*, void*); // operator de egalitate
 // sterg stocul, adica setez cantitatea la 0
 void medicament_sterge_stoc(Medicament*); // sterg stocul
+
+/**
+ * @param 1: medicament
+ * @param 2: medicament
+ * @param 3: reversed
+ *          NORMAL daca functia intoarce rezultatul asteptat
+ *          REVERSED altfel
+ * compar 2 pointeri la medicament dupa nume, lexicografic crescator
+ * in caz de egalitate, compar dupa cantitate, crescator
+ * @return LESS daca primul medicament e in ordine fata de al doilea
+ *         EQUAL daca cele 2 medicamente sunt egale
+ *         GREATER daca daca al doilea medicament e in ordine fata de primul
+ */
+int medicament_compare(void*, void*, int);
+
+/**
+ * verifica daca medicamentul are numele incepand cu prima litera din numele celui de-al doilea medicament
+ * @pre: medicamentele sunt valide
+ * @param 1: pointer catre un medicament, care va fi verificat
+ * @param 2: pointer catre un medicament care contine informatie pentru filtru
+ *           , restul valorilor avand valoarea default
+ * @return INFILTER daca medicamentul respecta filtru
+ *         !INFILTER altfel
+ */
+int filtru_nume(void*, void*);
+/**
+ * verifica daca medicamentul are cantitatea mai mica decat a celui de-al doilea medicament
+ * @pre: medicamentul si informatia din filtru sunt valide
+ * @param 1: pointer catre un medicament, care va fi verificat
+ * @param 2: pointer catre un medicament care contine informatie pentru filtru
+ *           , restul valorilor avand valoarea default
+ * @return INFILTER daca medicamentul respecta filtru
+ *         !INFILTER altfel
+ */
+int filtru_cantitate(void*, void*);
 
 // eliberare memorie
 void medicament_delete(Medicament*);

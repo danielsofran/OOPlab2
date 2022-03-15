@@ -1,6 +1,6 @@
         -:    0:Source:/mnt/c/Desktop/CLionsProjects/OOPlab2/domain.c
-        -:    0:Graph:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/domain.c.gcno
-        -:    0:Data:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/domain.c.gcda
+        -:    0:Graph:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/domain.c.gcno
+        -:    0:Data:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/domain.c.gcda
         -:    0:Runs:1
         -:    0:Programs:1
         -:    1://
@@ -10,30 +10,30 @@
         -:    5:#include <math.h>
         -:    6:#include "domain.h"
         -:    7:
-        5:    8:Medicament* medicament_create_default(){
-        5:    9:    Medicament* medicament = malloc(sizeof(Medicament));
-        5:   10:    medicament->cod = NULL;
-        5:   11:    medicament->nume = NULL;
-        5:   12:    medicament->concentratie = 0.0;
-        5:   13:    medicament->cantitate = 0;
-        5:   14:    return medicament;
+        6:    8:Medicament* medicament_create_default(){
+        6:    9:    Medicament* medicament = malloc(sizeof(Medicament));
+        6:   10:    medicament->cod = NULL;
+        6:   11:    medicament->nume = NULL;
+        6:   12:    medicament->concentratie = 0.0;
+        6:   13:    medicament->cantitate = 0;
+        6:   14:    return medicament;
         -:   15:}
         -:   16:
-       14:   17:Medicament* medicament_create(char* cod, char* nume, double concentratie, int cantitate){
-       14:   18:    Medicament* medicament = malloc(sizeof(Medicament));
-       14:   19:    if(cod==NULL) medicament->cod = NULL;
+       15:   17:Medicament* medicament_create(char* cod, char* nume, double concentratie, int cantitate){
+       15:   18:    Medicament* medicament = malloc(sizeof(Medicament));
+       15:   19:    if(cod==NULL) medicament->cod = NULL;
         -:   20:    else {
-       13:   21:        medicament->cod = malloc(sizeof(char) * (strlen(cod) + 1));
-       13:   22:        strcpy(medicament->cod, cod);
+       14:   21:        medicament->cod = malloc(sizeof(char) * (strlen(cod) + 1));
+       14:   22:        strcpy(medicament->cod, cod);
         -:   23:    }
-       14:   24:    if(nume==NULL) medicament->nume = NULL;
+       15:   24:    if(nume==NULL) medicament->nume = NULL;
         -:   25:    else {
-       13:   26:        medicament->nume = malloc(sizeof(char)*(strlen(nume)+1));
-       13:   27:        strcpy(medicament->nume, nume);
+       14:   26:        medicament->nume = malloc(sizeof(char) * (strlen(nume)+1));
+       14:   27:        strcpy(medicament->nume, nume);
         -:   28:    }
-       14:   29:    medicament->concentratie = concentratie;
-       14:   30:    medicament->cantitate = cantitate;
-       14:   31:    return medicament;
+       15:   29:    medicament->concentratie = concentratie;
+       15:   30:    medicament->cantitate = cantitate;
+       15:   31:    return medicament;
         -:   32:}
         -:   33:
        16:   34:char* medicament_get_cod(Medicament* medicament){
@@ -50,41 +50,43 @@
         -:   45:}
         -:   46:
         2:   47:void medicament_set_cod(Medicament* medicament, char* cod){
-        2:   48:    medicament->cod = malloc(sizeof(char)*(strlen(cod)+1));
-        2:   49:    strcpy(medicament->cod, cod);
-        2:   50:}
-        3:   51:void medicament_set_nume(Medicament* medicament, char* nume){
-        3:   52:    medicament->nume = malloc(sizeof(char)*(strlen(nume)+1));
-        3:   53:    strcpy(medicament->nume, nume);
-        3:   54:}
-        3:   55:void medicament_set_concentratie(Medicament* medicament, double concentratie){
-        3:   56:    medicament->concentratie = concentratie;
-        3:   57:}
-        5:   58:void medicament_set_cantitate(Medicament* medicament, int cantitate){
-        5:   59:    medicament->cantitate = cantitate;
-        5:   60:}
-        -:   61:
-       14:   62:int medicament_eq(void* m1, void* m2){
-       14:   63:    Medicament* medicament1 = (Medicament*)m1;
-       14:   64:    Medicament* medicament2 = (Medicament*)m2;
-       14:   65:    if(medicament1->cod == NULL || medicament2->cod == NULL) return medicament1->cod == medicament2->cod;
-       10:   66:    if(strcmp(medicament1->cod, medicament2->cod) !=0) return 0;
-        -:   67:
-        6:   68:    if(medicament1->nume == NULL || medicament2->cod == NULL) return medicament1->nume == medicament2->nume;
-        6:   69:    if(strcmp(medicament1->nume, medicament2->nume) !=0) return 0;
-        -:   70:
-        6:   71:    if(fabs(medicament1->concentratie-medicament2->concentratie)>=1e-6) return 0;
-        6:   72:    return 1;
-        -:   73:}
-        -:   74:
-        1:   75:void medicament_sterge_stoc(Medicament* medicament){
-        1:   76:    medicament->cantitate = 0;
-        1:   77:}
-        -:   78:
-       19:   79:void medicament_delete(Medicament* medicament)
-        -:   80:{
-       19:   81:    if(medicament->cod != NULL) free(medicament->cod);
-       19:   82:    if(medicament->nume != NULL) free(medicament->nume);
-       19:   83:    free(medicament);
-       19:   84:    medicament=NULL;
-       19:   85:}
+        2:   48:    if(medicament->cod) free(medicament->cod);
+        2:   49:    medicament->cod = malloc(sizeof(char)*(strlen(cod)+1));
+        2:   50:    strcpy(medicament->cod, cod);
+        2:   51:}
+        3:   52:void medicament_set_nume(Medicament* medicament, char* nume){
+        3:   53:    if(medicament->nume) free(medicament->nume);
+        3:   54:    medicament->nume = malloc(sizeof(char)*(strlen(nume)+1));
+        3:   55:    strcpy(medicament->nume, nume);
+        3:   56:}
+        3:   57:void medicament_set_concentratie(Medicament* medicament, double concentratie){
+        3:   58:    medicament->concentratie = concentratie;
+        3:   59:}
+        5:   60:void medicament_set_cantitate(Medicament* medicament, int cantitate){
+        5:   61:    medicament->cantitate = cantitate;
+        5:   62:}
+        -:   63:
+       16:   64:int medicament_eq(void* m1, void* m2){
+       16:   65:    Medicament* medicament1 = (Medicament*)m1;
+       16:   66:    Medicament* medicament2 = (Medicament*)m2;
+       16:   67:    if(medicament1->cod == NULL || medicament2->cod == NULL) return medicament1->cod == medicament2->cod;
+       11:   68:    if(strcmp(medicament1->cod, medicament2->cod) !=0) return 0;
+        -:   69:
+        7:   70:    if(medicament1->nume == NULL || medicament2->cod == NULL) return medicament1->nume == medicament2->nume;
+        7:   71:    if(strcmp(medicament1->nume, medicament2->nume) !=0) return 0;
+        -:   72:
+        7:   73:    if(fabs(medicament1->concentratie-medicament2->concentratie)>=1e-6) return 0;
+        7:   74:    return 1;
+        -:   75:}
+        -:   76:
+        1:   77:void medicament_sterge_stoc(Medicament* medicament){
+        1:   78:    medicament->cantitate = 0;
+        1:   79:}
+        -:   80:
+       21:   81:void medicament_delete(Medicament* medicament)
+        -:   82:{
+       21:   83:    if(medicament->cod != NULL) free(medicament->cod);
+       21:   84:    if(medicament->nume != NULL) free(medicament->nume);
+       21:   85:    free(medicament);
+       21:   86:    medicament=NULL;
+       21:   87:}

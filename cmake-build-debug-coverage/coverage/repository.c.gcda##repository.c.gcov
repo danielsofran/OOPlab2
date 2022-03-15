@@ -1,6 +1,6 @@
         -:    0:Source:/mnt/c/Desktop/CLionsProjects/OOPlab2/repository.c
-        -:    0:Graph:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/repository.c.gcno
-        -:    0:Data:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/repository.c.gcda
+        -:    0:Graph:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/repository.c.gcno
+        -:    0:Data:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/repository.c.gcda
         -:    0:Runs:1
         -:    0:Programs:1
         -:    1://
@@ -9,15 +9,15 @@
         -:    4:
         -:    5:#include "repository.h"
         -:    6:
-        4:    7:Repository* repository_create(int (*eq)(void*, void*)){
-        4:    8:    Repository* repository = malloc(sizeof(Repository));
-        4:    9:    repository->capacity = 100;
-        4:   10:    repository->length = 0;
-        4:   11:    repository->elements = (void**) malloc(sizeof(void*) * repository->capacity);
-      404:   12:    for(int i=0;i<repository->capacity;++i)
-      400:   13:        repository->elements[i] = NULL;
-        4:   14:    repository->elem_eq = eq;
-        4:   15:    return repository;
+        5:    7:Repository* repository_create(int (*eq)(void*, void*)){
+        5:    8:    Repository* repository = malloc(sizeof(Repository));
+        5:    9:    repository->capacity = 100;
+        5:   10:    repository->length = 0;
+        5:   11:    repository->elements = (void**) malloc(sizeof(void*) * repository->capacity);
+      505:   12:    for(int i=0;i<repository->capacity;++i)
+      500:   13:        repository->elements[i] = NULL;
+        5:   14:    repository->elem_eq = eq;
+        5:   15:    return repository;
         -:   16:}
         -:   17:
        31:   18:int repository_get_length(Repository* repository){
@@ -26,9 +26,9 @@
         2:   21:int repository_get_capacity(Repository* repository) {
         2:   22:    return repository->capacity;
         -:   23:}
-       14:   24:void* repository_get_element_at(Repository* repository, int index) {
-       14:   25:    if(index>=0 && index<repository->length)
-       13:   26:        return repository->elements[index];
+       18:   24:void* repository_get_element_at(Repository* repository, int index) {
+       18:   25:    if(index>=0 && index<repository->length)
+       17:   26:        return repository->elements[index];
         1:   27:    SET_ERROR(OUT_OF_RANGE);
         1:   28:    return NULL;
         -:   29:}
@@ -56,10 +56,10 @@
         1:   51:    else SET_ERROR(OUT_OF_RANGE);
         2:   52:}
         -:   53:
-        4:   54:void repository_add(Repository* repository, void* value){
-        4:   55:    if(repository->length > repository->capacity) repository_set_capacity(repository, repository->capacity + repository->capacity/2);
-        4:   56:    repository->elements[repository->length++] = value;
-        4:   57:}
+        6:   54:void repository_add(Repository* repository, void* value){
+        6:   55:    if(repository->length > repository->capacity) repository_set_capacity(repository, repository->capacity + repository->capacity/2);
+        6:   56:    repository->elements[repository->length++] = value;
+        6:   57:}
         -:   58:
         7:   59:int repository_index_of(Repository* repository, void* value)
         -:   60:{
@@ -70,11 +70,16 @@
         4:   65:    return NOT_FOUND;
         -:   66:}
         -:   67:
-        4:   68:void repository_delete(Repository* repository)
+        1:   68:void repository_swap(Repository* repository, int index_i, int index_f)
         -:   69:{
-        -:   70://    for(int i=0;i<repository->length;++i)
-        -:   71://        if(repository->elements[i] != NULL)
-        -:   72://            free(repository->elements[i]);
-        4:   73:    free(repository->elements);
-        4:   74:    free(repository);
-        4:   75:}
+        1:   70:    void* el1 = repository_get_element_at(repository, index_i);
+        1:   71:    void* el2 = repository_get_element_at(repository, index_f);
+        1:   72:    repository->elements[index_f] = el1;
+        1:   73:    repository->elements[index_i] = el2;
+        1:   74:}
+        -:   75:
+        5:   76:void repository_delete(Repository* repository)
+        -:   77:{
+        5:   78:    free(repository->elements);
+        5:   79:    free(repository);
+        5:   80:}

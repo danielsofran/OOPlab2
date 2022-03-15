@@ -45,12 +45,12 @@ int medicament_get_cantitate(Medicament* medicament){
 }
 
 void medicament_set_cod(Medicament* medicament, char* cod){
-    free(medicament->cod);
+    if(medicament->cod) free(medicament->cod);
     medicament->cod = malloc(sizeof(char)*(strlen(cod)+1));
     strcpy(medicament->cod, cod);
 }
 void medicament_set_nume(Medicament* medicament, char* nume){
-    free(medicament->nume);
+    if(medicament->nume) free(medicament->nume);
     medicament->nume = malloc(sizeof(char)*(strlen(nume)+1));
     strcpy(medicament->nume, nume);
 }
@@ -76,6 +76,28 @@ int medicament_eq(void* m1, void* m2){
 
 void medicament_sterge_stoc(Medicament* medicament){
     medicament->cantitate = 0;
+}
+
+int medicament_compare(void* medicament1, void* medicament2, int reversed){
+    Medicament* m1 = medicament1, *m2 = medicament2;
+    int cmpnume = strcmp(medicament_get_nume(m1), medicament_get_nume(m2));
+    if(cmpnume<0) return -1*reversed;
+    if(cmpnume>0) return 1*reversed;
+    // altfel, numele sunt egale
+    int cmpcant = medicament_get_cantitate(m1) - medicament_get_cantitate(m2);
+    if(cmpcant<0) return -1*reversed;
+    if(cmpcant>0) return 1*reversed;
+    return EQUAL; // altfel, sunt egale
+}
+
+int filtru_nume(void* medicament, void* filtru){
+    char c = medicament_get_nume(filtru)[0];
+    return c == medicament_get_nume(medicament)[0];
+}
+
+int filtru_cantitate(void* medicament, void* filtru){
+    return medicament_get_cantitate(medicament)<
+            medicament_get_cantitate(filtru);
 }
 
 void medicament_delete(Medicament* medicament)

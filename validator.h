@@ -11,10 +11,10 @@
 #include <stdio.h>
 
 #define VALIDATOR_OK 0
-#define EROARE_COD 1
-#define EROARE_NUME 2
-#define EROARE_CONC 4
-#define EROARE_CANT 8
+#define EROARE_COD 0x100
+#define EROARE_NUME 0x200
+#define EROARE_CONC 0x400
+#define EROARE_CANT 0x800
 
 // verific ca codul sa fie strict alfanumeric
 // daca valoarea este invalida, returnez o eroare specifica

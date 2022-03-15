@@ -65,11 +65,42 @@ int repository_index_of(Repository* repository, void* value)
     return NOT_FOUND;
 }
 
+void repository_swap(Repository* repository, int index_i, int index_f)
+{
+    void* el1 = repository_get_element_at(repository, index_i);
+    void* el2 = repository_get_element_at(repository, index_f);
+    repository->elements[index_f] = el1;
+    repository->elements[index_i] = el2;
+}
+
+void repository_sort(Repository* repository, int(*compare)(void*,void*,int), int reversed)
+{
+    int n = repository_get_length(repository);
+    for(int i=0;i<n-1;++i)
+        for(int j=i+1;j<n;++j)
+        {
+            void* eli = repository_get_element_at(repository, i);
+            void* elj = repository_get_element_at(repository, j);
+            if(compare(eli, elj, reversed)==GREATER) // daca nu sunt in ordine
+                repository_swap(repository, i, j);
+        }
+}
+
+Repository* repository_filter(Repository* repository, void* filter_data, int (*filter)(void*,void*)){
+    int n = repository_get_length(repository);
+    Repository* filtered = repository_create(repository->elem_eq);
+    for(int i=0;i<n;++i)
+    {
+        void* elem = repository_get_element_at(repository, i);
+        if(filter(elem, filter_data))
+            repository_add(filtered, elem);
+    }
+    return filtered;
+}
+
+
 void repository_delete(Repository* repository)
 {
-//    for(int i=0;i<repository->length;++i)
-//        if(repository->elements[i] != NULL)
-//            free(repository->elements[i]);
     free(repository->elements);
     free(repository);
 }

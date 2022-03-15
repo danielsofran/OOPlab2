@@ -11,6 +11,8 @@
 
 
 #define LENGTHMAX 100
+#define REVERSED -1
+#define NORMAL 1
 
 typedef struct{
     int length;
@@ -61,6 +63,26 @@ void repository_add(Repository*, void*); // append
 // NOT_FOUND daca nu exista
 int repository_index_of(Repository*, void*); // find
 
+void repository_swap(Repository*, int, int); // interschimbare
+/**
+ * @param 1: repository
+ * @param 2: functie de sortare
+ * @param 3: valoarea lui reversed: 1 pentru reversed=false sau -1 pt reversed=true
+ * sortez repository-ul dupa functia de comparare
+ * sortare prin selectie directa
+ * theta(n^2)
+ */
+void repository_sort(Repository*, int(*)(void*,void*,int), int);
+
+/**
+ * @param 1: repository
+ * @param 2: functia de filtrare
+ * @return: repository-ul filtrat
+ * filtrez repository-ul dupa functia de filtrare
+ */
+Repository* repository_filter(Repository*, void* filter_data, int (*)(void*,void*));
+
+/** @note: nu se elibereaza elementele */
 void repository_delete(Repository*); // destructor
 
 #endif //LAB2_REPOSITORY_H

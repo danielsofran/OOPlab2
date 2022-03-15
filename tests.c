@@ -40,17 +40,35 @@ void test_medicament_setters(){
 void test_medicament_externs(){
     Medicament *medicament1 = medicament_create_default(),
     *medicament2 = medicament_create("1234", "Fasconal", 30.0, 10);
-
+    // eq
     medicament_set_cod(medicament1, "1234");
     medicament_set_nume(medicament1, "Fasconal");
     medicament_set_concentratie(medicament1, 30.0);
     medicament_set_cantitate(medicament1, 10);
     assert(medicament_eq(medicament1, medicament2));
     assert(medicament_eq(medicament1, medicament1));
-
+    // sterge stoc
     medicament_sterge_stoc(medicament1);
     assert(medicament_get_cantitate(medicament1) == 0);
 
+    // compare
+    assert(medicament_compare(medicament1, medicament2, 1) == LESS);
+    medicament_set_cantitate(medicament1, 10);
+    assert(medicament_compare(medicament1, medicament2, 1) == EQUAL);
+    medicament_set_nume(medicament2, "paracetamol");
+    assert(medicament_compare(medicament1, medicament2, -1) == GREATER);
+
+    // filtru
+    Medicament* filtru = medicament_create_default();
+    medicament_set_nume(filtru, "F");
+    assert(filtru_nume(medicament1, filtru) == INFILTER);
+    assert(filtru_nume(medicament2, filtru) == !INFILTER);
+    medicament_set_cantitate(medicament2, 15);
+    medicament_set_cantitate(filtru, 13);
+    assert(filtru_cantitate(medicament1, filtru) == INFILTER);
+    assert(filtru_cantitate(medicament2, filtru) == !INFILTER);
+
+    medicament_delete(filtru);
     medicament_delete(medicament1);
     medicament_delete(medicament2);
 }
@@ -69,7 +87,7 @@ void test_validator(){
     assert(validate_concentratie(120.0) == EROARE_CONC);
 
     Medicament* medicament = medicament_create("", "acb", 0, 0);
-    assert(validate_madicament(medicament) == 0b1101);
+    assert(validate_madicament(medicament) == (EROARE_COD | EROARE_CONC | EROARE_CANT));
     medicament_delete(medicament);
 }
 
@@ -128,6 +146,39 @@ void test_repo_setters(){
     repository_delete(repository);
 }
 
+void test_repo_externs(){
+    Repository* repository = repository_create(medicament_eq);
+    Medicament *m1 = medicament_create("1234", "Paracetamol", 30.0, 15), *m2 = medicament_create("1234", "Fasconal", 30.0, 10);
+    repository_add(repository, m1);
+    repository_add(repository, m2);
+    // swap
+    repository_swap(repository, 0, 1);
+    assert(medicament_eq(repository_get_element_at(repository, 0), m2));
+    assert(medicament_eq(repository_get_element_at(repository, 1), m1));
+    // filter
+    Medicament* filter = medicament_create("-", "P", 7.8, 11);
+    Repository* filtered = repository_filter(repository, filter, filtru_nume);
+    assert(repository_get_length(filtered) == 1);
+    assert(medicament_eq(repository_get_element_at(filtered, 0), m1));
+    repository_delete(filtered);
+    filtered = repository_filter(repository, filter, filtru_cantitate);
+    assert(repository_get_length(filtered) == 1);
+    assert(medicament_eq(repository_get_element_at(filtered, 0), m2));
+    repository_delete(filtered);
+    // sort
+    repository_sort(repository, medicament_compare, NORMAL);
+    assert(medicament_eq(repository_get_element_at(repository, 0), m2));
+    assert(medicament_eq(repository_get_element_at(repository, 1), m1));
+    repository_sort(repository, medicament_compare, REVERSED);
+    assert(medicament_eq(repository_get_element_at(repository, 0), m1));
+    assert(medicament_eq(repository_get_element_at(repository, 1), m2));
+
+    medicament_delete(m1);
+    medicament_delete(m2);
+    medicament_delete(filter);
+    repository_delete(repository);
+}
+
 void test_service()
 {
     Repository* repository = repository_create(medicament_eq);
@@ -170,9 +221,6 @@ void test_service()
     assert(result == NOT_FOUND);
 
     medicament_delete(m2);
-//    char* numeprt = ((Medicament*)service->repository->elements[1])->nume;
-//    free(numeprt);
-//    numeprt = NULL;
     service_delete(service);
 }
 
@@ -183,5 +231,6 @@ void testall() {
     test_repo_getters();
     test_medicament_externs();
     test_repo_setters();
+    test_repo_externs();
     test_service();
 }

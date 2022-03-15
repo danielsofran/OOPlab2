@@ -1,6 +1,6 @@
         -:    0:Source:/mnt/c/Desktop/CLionsProjects/OOPlab2/tests.c
-        -:    0:Graph:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/tests.c.gcno
-        -:    0:Data:/mnt/c/Desktop/CLionsProjects/OOPlab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/tests.c.gcda
+        -:    0:Graph:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/tests.c.gcno
+        -:    0:Data:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/tests.c.gcda
         -:    0:Runs:1
         -:    0:Programs:1
         -:    1://
@@ -133,57 +133,72 @@
         1:  128:    repository_delete(repository);
         1:  129:}
         -:  130:
-        1:  131:void test_service()
-        -:  132:{
-        1:  133:    Repository* repository = repository_create(medicament_eq);
-        1:  134:    Service* service = service_create(repository);
-        1:  135:    Medicament* m2 = medicament_create("1234", "Fasconal", 30.0, 10);
-        1:  136:    assert(service_length(service) == 0);
-        -:  137:    // ADAUGARE
-        -:  138:    // eroare
-        1:  139:    int result = service_add(service, NULL, NULL, 0.0, 0);
-        1:  140:    assert(result != SUCCESS);
-        -:  141:    // un elem
-        1:  142:    result = service_add(service, "1234", "Fasconal", 30.0, 10);
-        1:  143:    assert(result == SUCCESS);
-        1:  144:    assert(service_length(service) == 1);
-        1:  145:    assert(medicament_eq(service_element(service, 0), m2));
-        -:  146:    // 2 elemente de acelasi tip
-        1:  147:    medicament_set_cantitate(m2, 5);
-        1:  148:    result = service_add(service, "1234", "Fasconal", 30.0, 5);
-        1:  149:    assert(result == SUCCESS);
-        1:  150:    assert(service_length(service) == 1);
-        -:  151:    // alt elem diferit
-        1:  152:    result = service_add(service, "abc", "Fasconal", 30.0, 10);
-        1:  153:    assert(result == SUCCESS);
-        1:  154:    assert(service_length(service) == 2);
-        -:  155:
-        -:  156:    // MODIFICARE
-        1:  157:    result = service_modify(service, "abc", "Fasconal", 30.0, "Parasinus", 25.0);
-        1:  158:    assert(result == SUCCESS);
-        1:  159:    result = service_modify(service, "dac", "Fasconal", 30.0, "Parasinus", 25.0);
-        1:  160:    assert(result == NOT_FOUND);
-        1:  161:    result = service_modify(service, "abc", "Fasconal", 30.0, "^%^&%*", 120.0);
-        1:  162:    assert(result == EROARE_NUME + EROARE_CONC);
-        1:  163:    result = service_modify(service, "abc", "Fasconal", 30.0, "med", 120.0);
-        1:  164:    assert(result == EROARE_CONC);
-        -:  165:
-        -:  166:    // stergere cantitate
-        1:  167:    result = service_delete_cant(service, "abc");
-        1:  168:    assert(result == SUCCESS);
-        1:  169:    result = service_delete_cant(service, "dac");
-        1:  170:    assert(result == NOT_FOUND);
-        -:  171:
-        1:  172:    medicament_delete(m2);
-        1:  173:    service_delete(service);
-        1:  174:}
-        -:  175:
-        1:  176:void testall() {
-        1:  177:    test_medicament_getters();
-        1:  178:    test_medicament_setters();
-        1:  179:    test_validator();
-        1:  180:    test_repo_getters();
-        1:  181:    test_medicament_externs();
-        1:  182:    test_repo_setters();
-        1:  183:    test_service();
-        1:  184:}
+        1:  131:void test_repo_externs(){
+        1:  132:    Repository* repository = repository_create(medicament_eq);
+        1:  133:    Medicament *m1 = medicament_create_default(), *m2 = medicament_create("1234", "Fasconal", 30.0, 10);
+        1:  134:    repository_add(repository, m1);
+        1:  135:    repository_add(repository, m2);
+        -:  136:
+        1:  137:    repository_swap(repository, 0, 1);
+        1:  138:    assert(medicament_eq(repository_get_element_at(repository, 0), m2));
+        1:  139:    assert(medicament_eq(repository_get_element_at(repository, 1), m1));
+        1:  140:    medicament_delete(m1);
+        1:  141:    medicament_delete(m2);
+        1:  142:    repository_delete(repository);
+        1:  143:}
+        -:  144:
+        1:  145:void test_service()
+        -:  146:{
+        1:  147:    Repository* repository = repository_create(medicament_eq);
+        1:  148:    Service* service = service_create(repository);
+        1:  149:    Medicament* m2 = medicament_create("1234", "Fasconal", 30.0, 10);
+        1:  150:    assert(service_length(service) == 0);
+        -:  151:    // ADAUGARE
+        -:  152:    // eroare
+        1:  153:    int result = service_add(service, NULL, NULL, 0.0, 0);
+        1:  154:    assert(result != SUCCESS);
+        -:  155:    // un elem
+        1:  156:    result = service_add(service, "1234", "Fasconal", 30.0, 10);
+        1:  157:    assert(result == SUCCESS);
+        1:  158:    assert(service_length(service) == 1);
+        1:  159:    assert(medicament_eq(service_element(service, 0), m2));
+        -:  160:    // 2 elemente de acelasi tip
+        1:  161:    medicament_set_cantitate(m2, 5);
+        1:  162:    result = service_add(service, "1234", "Fasconal", 30.0, 5);
+        1:  163:    assert(result == SUCCESS);
+        1:  164:    assert(service_length(service) == 1);
+        -:  165:    // alt elem diferit
+        1:  166:    result = service_add(service, "abc", "Fasconal", 30.0, 10);
+        1:  167:    assert(result == SUCCESS);
+        1:  168:    assert(service_length(service) == 2);
+        -:  169:
+        -:  170:    // MODIFICARE
+        1:  171:    result = service_modify(service, "abc", "Fasconal", 30.0, "Parasinus", 25.0);
+        1:  172:    assert(result == SUCCESS);
+        1:  173:    result = service_modify(service, "dac", "Fasconal", 30.0, "Parasinus", 25.0);
+        1:  174:    assert(result == NOT_FOUND);
+        1:  175:    result = service_modify(service, "abc", "Fasconal", 30.0, "^%^&%*", 120.0);
+        1:  176:    assert(result == EROARE_NUME + EROARE_CONC);
+        1:  177:    result = service_modify(service, "abc", "Fasconal", 30.0, "med", 120.0);
+        1:  178:    assert(result == EROARE_CONC);
+        -:  179:
+        -:  180:    // stergere cantitate
+        1:  181:    result = service_delete_cant(service, "abc");
+        1:  182:    assert(result == SUCCESS);
+        1:  183:    result = service_delete_cant(service, "dac");
+        1:  184:    assert(result == NOT_FOUND);
+        -:  185:
+        1:  186:    medicament_delete(m2);
+        1:  187:    service_delete(service);
+        1:  188:}
+        -:  189:
+        1:  190:void testall() {
+        1:  191:    test_medicament_getters();
+        1:  192:    test_medicament_setters();
+        1:  193:    test_validator();
+        1:  194:    test_repo_getters();
+        1:  195:    test_medicament_externs();
+        1:  196:    test_repo_setters();
+        1:  197:    test_repo_externs();
+        1:  198:    test_service();
+        1:  199:}
