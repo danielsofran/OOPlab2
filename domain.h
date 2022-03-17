@@ -8,13 +8,21 @@
 #include "string.h"
 #include "stdlib.h"
 
+// define-uri pentru citiri (UI)
 #define LGMAX_COD 20+1
 #define LGMAX_NUME 30+1
 
+// valorile de retur ale functiei de comparare
 #define LESS -1
 #define EQUAL 0
 #define GREATER 1
+
+// valoarea de return a functiei de filtrare
 #define INFILTER 1
+
+// valorile date ca parametru la functia de comparare
+#define REVERSED -1
+#define NORMAL 1
 
 typedef struct {
     char* cod;

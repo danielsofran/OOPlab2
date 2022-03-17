@@ -6,7 +6,7 @@
 
 Repository* repository_create(int (*eq)(void*, void*)){
     Repository* repository = malloc(sizeof(Repository));
-    repository->capacity = 100;
+    repository->capacity = 2;
     repository->length = 0;
     repository->elements = (void**) malloc(sizeof(void*) * repository->capacity);
     for(int i=0;i<repository->capacity;++i)
@@ -69,6 +69,7 @@ void repository_swap(Repository* repository, int index_i, int index_f)
 {
     void* el1 = repository_get_element_at(repository, index_i);
     void* el2 = repository_get_element_at(repository, index_f);
+    if(el1 == NULL || el2 == NULL) return;
     repository->elements[index_f] = el1;
     repository->elements[index_i] = el2;
 }

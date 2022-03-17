@@ -94,7 +94,7 @@ void test_validator(){
 void test_repo_getters(){
     Repository* repository = repository_create(medicament_eq);
     assert(repository_get_length(repository) == 0);
-    assert(repository_get_capacity(repository) == LENGTHMAX);
+    assert(repository_get_capacity(repository) == 2);
 
     Medicament* medicament = repository_get_element_at(repository, 1);
     assert(IS_ERROR(OUT_OF_RANGE));

@@ -51,26 +51,26 @@ Medicament* medicament_scan(){
     if(IS_ERROR(ERANGE)) {
         printf("Concentratie introdusa gresit!\n");
         CLEAR_ERRORS;
-        return medicament_create_default();
+        return NULL;
     }
     cant = strtol(scant, &endptr2, 10);
     if(IS_ERROR(ERANGE)){
         printf("Cantitate introdusa gresit!\n");
         CLEAR_ERRORS;
-        return medicament_create_default();
+        return NULL;
     }
     Medicament* rez = medicament_create(cod, nume, conc, cant);
     return rez;
 }
 
-void service_print(Service* service)
+void repo_print(Repository* repository)
 {
-    int length = service_length(service);
+    int length = repository_get_length(repository);
     for(int i=0; i<length;++i)
-        medicament_print(service_element(service, i));
+        medicament_print(repository_get_element_at(repository, i));
 }
 
-void printerrs(int cod_eroare){
+void print_errs(int cod_eroare){
     if(cod_eroare>=EROARE_CANT)
         printf("Cantitatea introdusa gresit!\n"),
         cod_eroare -= EROARE_CANT;
@@ -91,12 +91,13 @@ void menu(Service* service){
            "b) Actualizare medicamente (modificare nume, concentratie pentru un medicament din stoc)\n"
            "c) Stergerea intregului stoc dintr-un medicament dat\n"
            "d) Vizualizare medicamente din stoc, ordonat dupa nume, cantitate (crescator/descrescator)\n"
-           "e) Vizualizare lista de medicamente filtrate dupa un criteriu.\n"
+           "e) Vizualizare lista de medicamente filtrate dupa un criteriu (stoc/nume).\n"
            "i) Iesire din aplicatie\n\n");
     read:
     printf("Introduceti comanda:");
     char cmd;
     scanf("%c", &cmd);
+    cmd = tolower(cmd);
     if(isblank(cmd) || cmd=='\n' || cmd == '\0' || cmd == ' ') goto read;
     else if(cmd=='a') opt1(service);
     else if(cmd=='b') opt2(service);
@@ -111,12 +112,14 @@ void menu(Service* service){
 }
 void opt1(Service* service){
     Medicament* medicament = medicament_scan();
+    if(medicament==NULL) return;
     int result = service_add(service, medicament_get_cod(medicament), medicament_get_nume(medicament),
                              medicament_get_concentratie(medicament), medicament_get_cantitate(medicament));
     medicament_delete(medicament);
     if(result != SUCCESS)
-        printerrs(result);
+        print_errs(result);
     else printf("Operatie efectuata cu succes!\n");
+
 }
 
 void opt2(Service* service){
@@ -145,7 +148,7 @@ void opt2(Service* service){
         printf("Medicamentul nu a fost gasit!\n");
         return;
     }
-    printerrs(result);
+    print_errs(result);
 }
 
 void opt3(Service* service){
@@ -159,8 +162,49 @@ void opt3(Service* service){
 }
 
 void opt4(Service* service){
-    service_print(service);
+    char ordine[20];
+    printf("Introduceti ordinea:");
+    scanf("%s", ordine);
+    if(tolower(ordine[0])=='c') // crescator
+        repository_sort(service->repository, medicament_compare, NORMAL);
+    else if(tolower(ordine[0])=='d') // descrescator
+        repository_sort(service->repository, medicament_compare, REVERSED);
+    else{
+        printf("Comanda invalida! Introduceti crescator sau descrescator!\n");
+        return;
+    }
+    repo_print(service->repository);
 }
-void opt5(Service* service){
 
+void opt5(Service* service){
+    char sfiltru[20];
+    printf("Introduceti filtrul:");
+    scanf("%s", sfiltru);
+    if(tolower(sfiltru[0])=='c' || tolower(sfiltru[0]) == 's') // cantitate
+    {
+        printf("Introduceti stocul maxim:");
+        int stoc_max;
+        scanf("%d", &stoc_max);
+        Medicament* filtru = medicament_create_default();
+        medicament_set_cantitate(filtru, stoc_max);
+        Repository* filtrate = repository_filter(service->repository, filtru, filtru_cantitate);
+        repo_print(filtrate);
+        medicament_delete(filtru);
+        repository_delete(filtrate);
+        return;
+    }
+    if(tolower(sfiltru[0])=='n') // nume
+    {
+        printf("Introduceti caracterul cu care sa inceapa numele:");
+        char lit[]="%";
+        scanf("%c", &lit[0]);
+        Medicament* filtru = medicament_create_default();
+        medicament_set_nume(filtru, lit);
+        Repository* filtrate = repository_filter(service->repository, filtru, filtru_nume);
+        repo_print(filtrate);
+        medicament_delete(filtru);
+        repository_delete(filtrate);
+        return;
+    }
+    printf("Comanda invalida! Introduceti stoc sau nume!\n");
 }

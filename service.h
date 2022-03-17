@@ -22,10 +22,10 @@ Service* service_create(Repository*);
 // nr de medicamente
 int service_length(Service*);
 
-// returneaza adresa elementului de indice i din r
+// returneaza adresa medicamentului de indice i din r
 Medicament* service_element(Service*, int);
 
-// adaug datele la service, returnez codul de eroare sau succes
+// adaug datele la service, returnez codul de eroare sau SUCCESS
 int service_add(Service*, char*, char*, double, int);
 
 // actualizez nume si conc unui medicament la nounume si nouaconc

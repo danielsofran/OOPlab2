@@ -9,11 +9,6 @@
 #include "errors.h"
 #include "domain.h"
 
-
-#define LENGTHMAX 100
-#define REVERSED -1
-#define NORMAL 1
-
 typedef struct{
     int length;
     int capacity;
@@ -63,11 +58,21 @@ void repository_add(Repository*, void*); // append
 // NOT_FOUND daca nu exista
 int repository_index_of(Repository*, void*); // find
 
-void repository_swap(Repository*, int, int); // interschimbare
 /**
  * @param 1: repository
- * @param 2: functie de sortare
- * @param 3: valoarea lui reversed: 1 pentru reversed=false sau -1 pt reversed=true
+ * @param 2: index
+ * @param 3: index
+ * interschimb cei doi indecsi din repository
+ * @throw: OUT_OF_RANGE error daca indecsii nu sunt valizi, caz in care repository-ul nu se modifica
+ *         aceasta eroare trebuie curatata apoi cu CLEAR_ERRORS; pentru ca programul sa nu returneze o eroare
+ */
+void repository_swap(Repository*, int, int);
+
+/**
+ * @param 1: repository
+ * @param 2: functie de sortare: int f(void* el1, void* el2, int reversed);
+ * @param 3: valoarea lui reversed: REVERSED daca se doreste in ordine inversa
+ *                                  NORMAL daca se doreste o ordine directa
  * sortez repository-ul dupa functia de comparare
  * sortare prin selectie directa
  * theta(n^2)
@@ -76,7 +81,8 @@ void repository_sort(Repository*, int(*)(void*,void*,int), int);
 
 /**
  * @param 1: repository
- * @param 2: functia de filtrare
+ * @param 2: o entitate de tipul celor din repository care retine datele de filtrare
+ * @param 3: functia de filtrare: int f(void* el1, void* el2);
  * @return: repository-ul filtrat
  * filtrez repository-ul dupa functia de filtrare
  */

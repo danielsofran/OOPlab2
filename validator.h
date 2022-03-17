@@ -17,22 +17,22 @@
 #define EROARE_CANT 0x800
 
 // verific ca codul sa fie strict alfanumeric
-// daca valoarea este invalida, returnez o eroare specifica
+// daca valoarea este invalida, returnez EROARE_COD
 // altfel, returnez VALIDATOR_OK
 int validate_cod(char*);
 
 // verifica ca nume sa contina doar litere si spatii
-// daca valoarea este invalida, returnez o eroare specifica
+// daca valoarea este invalida, returnez EROARE_NUME
 // altfel, returnez VALIDATOR_OK
 int validate_nume(char*);
 
 // verific daca concentratia este sau nu un procent pozitiv
-// daca valoarea este invalida, returnez o eroare specifica
+// daca valoarea este invalida, returnez EROARE_CONC
 // altfel, returnez VALIDATOR_OK
 int validate_concentratie(double);
 
 // verific daca cantitatea e nr pozitiv
-// daca valoarea este invalida, returnez o eroare specifica
+// daca valoarea este invalida, returnez EROARE_CANT
 // altfel, returnez VALIDATOR_OK
 int validate_cantitate(int);
 
