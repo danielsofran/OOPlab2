@@ -1,16 +1,20 @@
-        -:    0:Source:/mnt/c/Desktop/CLionsProjects/OOPlab2/main.c
-        -:    0:Graph:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/main.c.gcno
-        -:    0:Data:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/main.c.gcda
+        -:    0:Source:C:/Desktop/OOP/lab2/main.c
+        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\main.c.gcno
+        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\main.c.gcda
         -:    0:Runs:1
-        -:    0:Programs:1
         -:    1:#include "tests.h"
         -:    2:#include "ui.h"
         -:    3:
-        1:    4:int main() {
-        1:    5:    testall();
-        1:    6:    Repository* repository = repository_create(medicament_eq);
-        1:    7:    Service* s = service_create(repository);
-        -:    8:    //menu(s);
-        1:    9:    service_delete(s);
-        1:   10:    return 0;
-        -:   11:}
+        -:    4:/**
+        -:    5: * set(CMAKE_CXXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+        -:    6: * pentru memory leaks
+        -:    7: */
+        -:    8:
+        1:    9:int main() {
+        1:   10:    testall();
+        1:   11:    Repository* repository = repository_create(medicament_eq);
+        1:   12:    Service* s = service_create(repository);
+        1:   13:    menu(s);
+        1:   14:    service_delete(s);
+        1:   15:    return 0;
+        -:   16:}

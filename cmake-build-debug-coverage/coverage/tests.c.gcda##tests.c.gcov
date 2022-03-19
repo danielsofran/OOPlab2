@@ -1,8 +1,7 @@
-        -:    0:Source:/mnt/c/Desktop/CLionsProjects/OOPlab2/tests.c
-        -:    0:Graph:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/tests.c.gcno
-        -:    0:Data:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/tests.c.gcda
+        -:    0:Source:C:/Desktop/OOP/lab2/tests.c
+        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\tests.c.gcno
+        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\tests.c.gcda
         -:    0:Runs:1
-        -:    0:Programs:1
         -:    1://
         -:    2:// Created by Daniel on 05.03.2022.
         -:    3://
@@ -12,17 +11,17 @@
         1:    7:void test_medicament_getters(){
         1:    8:    Medicament* medicament = medicament_create_default();
         -:    9:
-        1:   10:    assert(medicament_get_cod(medicament) == NULL);
-        1:   11:    assert(medicament_get_nume(medicament) == NULL);
-        1:   12:    assert(medicament_get_concentratie(medicament) == 0.0);
-        1:   13:    assert(medicament_get_cantitate(medicament) == 0);
+       1*:   10:    assert(medicament_get_cod(medicament) == NULL);
+       1*:   11:    assert(medicament_get_nume(medicament) == NULL);
+       1*:   12:    assert(medicament_get_concentratie(medicament) == 0.0);
+       1*:   13:    assert(medicament_get_cantitate(medicament) == 0);
         -:   14:
         1:   15:    medicament_delete(medicament);
         1:   16:    medicament = medicament_create("1234", "Fasconal", 30.0, 10);
-        1:   17:    assert(strcmp(medicament_get_cod(medicament), "1234")==0);
-        1:   18:    assert(strcmp(medicament_get_nume(medicament), "Fasconal")==0);
-        1:   19:    assert(medicament_get_concentratie(medicament) == 30.0);
-        1:   20:    assert(medicament_get_cantitate(medicament) == 10);
+       1*:   17:    assert(strcmp(medicament_get_cod(medicament), "1234")==0);
+       1*:   18:    assert(strcmp(medicament_get_nume(medicament), "Fasconal")==0);
+       1*:   19:    assert(medicament_get_concentratie(medicament) == 30.0);
+       1*:   20:    assert(medicament_get_cantitate(medicament) == 10);
         -:   21:
         1:   22:    medicament_delete(medicament);
         1:   23:}
@@ -34,10 +33,10 @@
         1:   29:    medicament_set_concentratie(medicament, 30.0);
         1:   30:    medicament_set_cantitate(medicament, 10);
         -:   31:
-        1:   32:    assert(strcmp(medicament_get_cod(medicament), "1234")==0);
-        1:   33:    assert(strcmp(medicament_get_nume(medicament), "Fasconal")==0);
-        1:   34:    assert(medicament_get_concentratie(medicament) == 30.0);
-        1:   35:    assert(medicament_get_cantitate(medicament) == 10);
+       1*:   32:    assert(strcmp(medicament_get_cod(medicament), "1234")==0);
+       1*:   33:    assert(strcmp(medicament_get_nume(medicament), "Fasconal")==0);
+       1*:   34:    assert(medicament_get_concentratie(medicament) == 30.0);
+       1*:   35:    assert(medicament_get_cantitate(medicament) == 10);
         -:   36:
         1:   37:    medicament_delete(medicament);
         1:   38:}
@@ -45,160 +44,197 @@
         1:   40:void test_medicament_externs(){
         1:   41:    Medicament *medicament1 = medicament_create_default(),
         1:   42:    *medicament2 = medicament_create("1234", "Fasconal", 30.0, 10);
-        -:   43:
+        -:   43:    // eq
         1:   44:    medicament_set_cod(medicament1, "1234");
         1:   45:    medicament_set_nume(medicament1, "Fasconal");
         1:   46:    medicament_set_concentratie(medicament1, 30.0);
         1:   47:    medicament_set_cantitate(medicament1, 10);
-        1:   48:    assert(medicament_eq(medicament1, medicament2));
-        1:   49:    assert(medicament_eq(medicament1, medicament1));
-        -:   50:
+       1*:   48:    assert(medicament_eq(medicament1, medicament2));
+       1*:   49:    assert(medicament_eq(medicament1, medicament1));
+        -:   50:    // sterge stoc
         1:   51:    medicament_sterge_stoc(medicament1);
-        1:   52:    assert(medicament_get_cantitate(medicament1) == 0);
+       1*:   52:    assert(medicament_get_cantitate(medicament1) == 0);
         -:   53:
-        1:   54:    medicament_delete(medicament1);
-        1:   55:    medicament_delete(medicament2);
-        1:   56:}
-        -:   57:
-        1:   58:void test_validator(){
-        1:   59:    assert(validate_nume("abC def") == VALIDATOR_OK);
-        1:   60:    assert(validate_nume("asfswd%") == EROARE_NUME);
-        1:   61:    assert(validate_nume("") == EROARE_NUME);
-        1:   62:    assert(validate_cod("Abc123") == VALIDATOR_OK);
-        1:   63:    assert(validate_cod("ned$wbu") == EROARE_COD);
-        1:   64:    assert(validate_cod("") == EROARE_COD);
-        1:   65:    assert(validate_cantitate(3) == VALIDATOR_OK);
-        1:   66:    assert(validate_cantitate(-2) == EROARE_CANT);
-        1:   67:    assert(validate_concentratie(82.123) == VALIDATOR_OK);
-        1:   68:    assert(validate_concentratie(-39.1) == EROARE_CONC);
-        1:   69:    assert(validate_concentratie(120.0) == EROARE_CONC);
+        -:   54:    // compare
+       1*:   55:    assert(medicament_compare(medicament1, medicament2, 1) == LESS);
+        1:   56:    medicament_set_cantitate(medicament1, 10);
+       1*:   57:    assert(medicament_compare(medicament1, medicament2, 1) == EQUAL);
+        1:   58:    medicament_set_nume(medicament2, "paracetamol");
+       1*:   59:    assert(medicament_compare(medicament1, medicament2, -1) == GREATER);
+        -:   60:
+        -:   61:    // filtru
+        1:   62:    Medicament* filtru = medicament_create_default();
+        1:   63:    medicament_set_nume(filtru, "F");
+       1*:   64:    assert(filtru_nume(medicament1, filtru) == INFILTER);
+       1*:   65:    assert(filtru_nume(medicament2, filtru) == !INFILTER);
+        1:   66:    medicament_set_cantitate(medicament2, 15);
+        1:   67:    medicament_set_cantitate(filtru, 13);
+       1*:   68:    assert(filtru_cantitate(medicament1, filtru) == INFILTER);
+       1*:   69:    assert(filtru_cantitate(medicament2, filtru) == !INFILTER);
         -:   70:
-        1:   71:    Medicament* medicament = medicament_create("", "acb", 0, 0);
-        1:   72:    assert(validate_madicament(medicament) == 0b1101);
-        1:   73:    medicament_delete(medicament);
+        1:   71:    medicament_delete(filtru);
+        1:   72:    medicament_delete(medicament1);
+        1:   73:    medicament_delete(medicament2);
         1:   74:}
         -:   75:
-        1:   76:void test_repo_getters(){
-        1:   77:    Repository* repository = repository_create(medicament_eq);
-        1:   78:    assert(repository_get_length(repository) == 0);
-        1:   79:    assert(repository_get_capacity(repository) == LENGTHMAX);
-        -:   80:
-        1:   81:    Medicament* medicament = repository_get_element_at(repository, 1);
-        1:   82:    assert(IS_ERROR(OUT_OF_RANGE));
-        1:   83:    CLEAR_ERRORS;
-        -:   84:
-        1:   85:    medicament = medicament_create_default();
-        1:   86:    repository->length=1;
-        1:   87:    repository->elements[0] = medicament;
-        1:   88:    assert(medicament_eq(medicament,
-        -:   89:                         repository_get_element_at(repository, 0)));
-        1:   90:    int index = repository_index_of(repository, medicament);
-        1:   91:    assert(index == 0);
-        1:   92:    Medicament* med2 = medicament_create("1", "2", 3.7, 4);
-        1:   93:    index = repository_index_of(repository, med2);
-        1:   94:    assert(index == NOT_FOUND);
-        -:   95:
-        1:   96:    medicament_delete(medicament);
-        1:   97:    medicament_delete(med2);
-        1:   98:    repository_delete(repository);
-        1:   99:}
-        -:  100:
-        1:  101:void test_repo_setters(){
-        1:  102:    Repository* repository = repository_create(medicament_eq);
-        1:  103:    Medicament *m1 = medicament_create_default(), *m2 = medicament_create("1234", "Fasconal", 30.0, 10);
-        1:  104:    repository_add(repository, m1);
-        1:  105:    assert(repository_get_length(repository)==1);
-        1:  106:    assert(medicament_eq(m1, repository_get_element_at(repository, 0)));
-        -:  107:
-        1:  108:    repository_set_length(repository, 105);
-        1:  109:    assert(repository_get_length(repository) == 105);
-        -:  110:
-        1:  111:    repository_set_capacity(repository, 110);
-        1:  112:    assert(repository_get_capacity(repository) == 110);
+        1:   76:void test_validator(){
+       1*:   77:    assert(validate_nume("abC def") == VALIDATOR_OK);
+       1*:   78:    assert(validate_nume("asfswd%") == EROARE_NUME);
+       1*:   79:    assert(validate_nume("") == EROARE_NUME);
+       1*:   80:    assert(validate_cod("Abc123") == VALIDATOR_OK);
+       1*:   81:    assert(validate_cod("ned$wbu") == EROARE_COD);
+       1*:   82:    assert(validate_cod("") == EROARE_COD);
+       1*:   83:    assert(validate_cantitate(3) == VALIDATOR_OK);
+       1*:   84:    assert(validate_cantitate(-2) == EROARE_CANT);
+       1*:   85:    assert(validate_concentratie(82.123) == VALIDATOR_OK);
+       1*:   86:    assert(validate_concentratie(-39.1) == EROARE_CONC);
+       1*:   87:    assert(validate_concentratie(120.0) == EROARE_CONC);
+        -:   88:
+        1:   89:    Medicament* medicament = medicament_create("", "acb", 0, 0);
+       1*:   90:    assert(validate_madicament(medicament) == (EROARE_COD | EROARE_CONC | EROARE_CANT));
+        1:   91:    medicament_delete(medicament);
+        1:   92:}
+        -:   93:
+        1:   94:void test_repo_getters(){
+        1:   95:    Repository* repository = repository_create(medicament_eq);
+       1*:   96:    assert(repository_get_length(repository) == 0);
+       1*:   97:    assert(repository_get_capacity(repository) == 2);
+        -:   98:
+        1:   99:    Medicament* medicament = repository_get_element_at(repository, 1);
+       1*:  100:    assert(IS_ERROR(OUT_OF_RANGE));
+        1:  101:    CLEAR_ERRORS;
+        -:  102:
+        1:  103:    medicament = medicament_create_default();
+        1:  104:    repository->length=1;
+        1:  105:    repository->elements[0] = medicament;
+       1*:  106:    assert(medicament_eq(medicament,
+        -:  107:                         repository_get_element_at(repository, 0)));
+        1:  108:    int index = repository_index_of(repository, medicament);
+       1*:  109:    assert(index == 0);
+        1:  110:    Medicament* med2 = medicament_create("1", "2", 3.7, 4);
+        1:  111:    index = repository_index_of(repository, med2);
+       1*:  112:    assert(index == NOT_FOUND);
         -:  113:
-        1:  114:    repository_set_length(repository, 2);
-        1:  115:    assert(repository_get_length(repository) == 2);
-        1:  116:    repository_set_element_at(repository, 1, m2);
-        1:  117:    assert(medicament_eq(m2, repository_get_element_at(repository, 1)));
+        1:  114:    medicament_delete(medicament);
+        1:  115:    medicament_delete(med2);
+        1:  116:    repository_delete(repository);
+        1:  117:}
         -:  118:
-        1:  119:    repository_set_element_at(repository, 3, m1);
-        1:  120:    assert(IS_ERROR(OUT_OF_RANGE));
-        1:  121:    CLEAR_ERRORS;
-        -:  122:
-        1:  123:    repository_set_length(repository, 100);
-        1:  124:    repository_add(repository, m2);
+        1:  119:void test_repo_setters(){
+        1:  120:    Repository* repository = repository_create(medicament_eq);
+        1:  121:    Medicament *m1 = medicament_create_default(), *m2 = medicament_create("1234", "Fasconal", 30.0, 10);
+        1:  122:    repository_add(repository, m1);
+       1*:  123:    assert(repository_get_length(repository)==1);
+       1*:  124:    assert(medicament_eq(m1, repository_get_element_at(repository, 0)));
         -:  125:
-        1:  126:    medicament_delete(m1);
-        1:  127:    medicament_delete(m2);
-        1:  128:    repository_delete(repository);
-        1:  129:}
-        -:  130:
-        1:  131:void test_repo_externs(){
-        1:  132:    Repository* repository = repository_create(medicament_eq);
-        1:  133:    Medicament *m1 = medicament_create_default(), *m2 = medicament_create("1234", "Fasconal", 30.0, 10);
-        1:  134:    repository_add(repository, m1);
-        1:  135:    repository_add(repository, m2);
+        1:  126:    repository_set_length(repository, 105);
+       1*:  127:    assert(repository_get_length(repository) == 105);
+        -:  128:
+        1:  129:    repository_set_capacity(repository, 110);
+       1*:  130:    assert(repository_get_capacity(repository) == 110);
+        -:  131:
+        1:  132:    repository_set_length(repository, 2);
+       1*:  133:    assert(repository_get_length(repository) == 2);
+        1:  134:    repository_set_element_at(repository, 1, m2);
+       1*:  135:    assert(medicament_eq(m2, repository_get_element_at(repository, 1)));
         -:  136:
-        1:  137:    repository_swap(repository, 0, 1);
-        1:  138:    assert(medicament_eq(repository_get_element_at(repository, 0), m2));
-        1:  139:    assert(medicament_eq(repository_get_element_at(repository, 1), m1));
-        1:  140:    medicament_delete(m1);
-        1:  141:    medicament_delete(m2);
-        1:  142:    repository_delete(repository);
-        1:  143:}
-        -:  144:
-        1:  145:void test_service()
-        -:  146:{
-        1:  147:    Repository* repository = repository_create(medicament_eq);
-        1:  148:    Service* service = service_create(repository);
-        1:  149:    Medicament* m2 = medicament_create("1234", "Fasconal", 30.0, 10);
-        1:  150:    assert(service_length(service) == 0);
-        -:  151:    // ADAUGARE
-        -:  152:    // eroare
-        1:  153:    int result = service_add(service, NULL, NULL, 0.0, 0);
-        1:  154:    assert(result != SUCCESS);
-        -:  155:    // un elem
-        1:  156:    result = service_add(service, "1234", "Fasconal", 30.0, 10);
-        1:  157:    assert(result == SUCCESS);
-        1:  158:    assert(service_length(service) == 1);
-        1:  159:    assert(medicament_eq(service_element(service, 0), m2));
-        -:  160:    // 2 elemente de acelasi tip
-        1:  161:    medicament_set_cantitate(m2, 5);
-        1:  162:    result = service_add(service, "1234", "Fasconal", 30.0, 5);
-        1:  163:    assert(result == SUCCESS);
-        1:  164:    assert(service_length(service) == 1);
-        -:  165:    // alt elem diferit
-        1:  166:    result = service_add(service, "abc", "Fasconal", 30.0, 10);
-        1:  167:    assert(result == SUCCESS);
-        1:  168:    assert(service_length(service) == 2);
-        -:  169:
-        -:  170:    // MODIFICARE
-        1:  171:    result = service_modify(service, "abc", "Fasconal", 30.0, "Parasinus", 25.0);
-        1:  172:    assert(result == SUCCESS);
-        1:  173:    result = service_modify(service, "dac", "Fasconal", 30.0, "Parasinus", 25.0);
-        1:  174:    assert(result == NOT_FOUND);
-        1:  175:    result = service_modify(service, "abc", "Fasconal", 30.0, "^%^&%*", 120.0);
-        1:  176:    assert(result == EROARE_NUME + EROARE_CONC);
-        1:  177:    result = service_modify(service, "abc", "Fasconal", 30.0, "med", 120.0);
-        1:  178:    assert(result == EROARE_CONC);
-        -:  179:
-        -:  180:    // stergere cantitate
-        1:  181:    result = service_delete_cant(service, "abc");
-        1:  182:    assert(result == SUCCESS);
-        1:  183:    result = service_delete_cant(service, "dac");
-        1:  184:    assert(result == NOT_FOUND);
-        -:  185:
-        1:  186:    medicament_delete(m2);
-        1:  187:    service_delete(service);
-        1:  188:}
-        -:  189:
-        1:  190:void testall() {
-        1:  191:    test_medicament_getters();
-        1:  192:    test_medicament_setters();
-        1:  193:    test_validator();
-        1:  194:    test_repo_getters();
-        1:  195:    test_medicament_externs();
-        1:  196:    test_repo_setters();
-        1:  197:    test_repo_externs();
-        1:  198:    test_service();
-        1:  199:}
+        1:  137:    repository_set_element_at(repository, 3, m1);
+       1*:  138:    assert(IS_ERROR(OUT_OF_RANGE));
+        1:  139:    CLEAR_ERRORS;
+        -:  140:
+        1:  141:    repository_set_length(repository, 100);
+        1:  142:    repository_add(repository, m2);
+        -:  143:
+        1:  144:    medicament_delete(m1);
+        1:  145:    medicament_delete(m2);
+        1:  146:    repository_delete(repository);
+        1:  147:}
+        -:  148:
+        1:  149:void test_repo_externs(){
+        1:  150:    Repository* repository = repository_create(medicament_eq);
+        1:  151:    Medicament *m1 = medicament_create("1234", "Paracetamol", 30.0, 15), *m2 = medicament_create("1234", "Fasconal", 30.0, 10);
+        1:  152:    repository_add(repository, m1);
+        1:  153:    repository_add(repository, m2);
+        -:  154:    // swap
+        1:  155:    repository_swap(repository, 0, 1);
+       1*:  156:    assert(medicament_eq(repository_get_element_at(repository, 0), m2));
+       1*:  157:    assert(medicament_eq(repository_get_element_at(repository, 1), m1));
+        -:  158:    // filter
+        1:  159:    Medicament* filter = medicament_create("-", "P", 7.8, 11);
+        1:  160:    Repository* filtered = repository_filter(repository, filter, filtru_nume);
+       1*:  161:    assert(repository_get_length(filtered) == 1);
+       1*:  162:    assert(medicament_eq(repository_get_element_at(filtered, 0), m1));
+        1:  163:    repository_delete(filtered);
+        1:  164:    filtered = repository_filter(repository, filter, filtru_cantitate);
+       1*:  165:    assert(repository_get_length(filtered) == 1);
+       1*:  166:    assert(medicament_eq(repository_get_element_at(filtered, 0), m2));
+        1:  167:    repository_delete(filtered);
+        -:  168:    // sort
+        1:  169:    repository_sort(repository, medicament_compare, NORMAL);
+       1*:  170:    assert(medicament_eq(repository_get_element_at(repository, 0), m2));
+       1*:  171:    assert(medicament_eq(repository_get_element_at(repository, 1), m1));
+        1:  172:    repository_sort(repository, medicament_compare, REVERSED);
+       1*:  173:    assert(medicament_eq(repository_get_element_at(repository, 0), m1));
+       1*:  174:    assert(medicament_eq(repository_get_element_at(repository, 1), m2));
+        -:  175:
+        1:  176:    medicament_delete(m1);
+        1:  177:    medicament_delete(m2);
+        1:  178:    medicament_delete(filter);
+        1:  179:    repository_delete(repository);
+        1:  180:}
+        -:  181:
+        1:  182:void test_service()
+        -:  183:{
+        1:  184:    Repository* repository = repository_create(medicament_eq);
+        1:  185:    Service* service = service_create(repository);
+        1:  186:    Medicament* m2 = medicament_create("1234", "Fasconal", 30.0, 10);
+       1*:  187:    assert(service_length(service) == 0);
+        -:  188:    // ADAUGARE
+        -:  189:    // eroare
+        1:  190:    int result = service_add(service, NULL, NULL, 0.0, 0);
+       1*:  191:    assert(result != SUCCESS);
+        -:  192:    // un elem
+        1:  193:    result = service_add(service, "1234", "Fasconal", 30.0, 10);
+       1*:  194:    assert(result == SUCCESS);
+       1*:  195:    assert(service_length(service) == 1);
+       1*:  196:    assert(medicament_eq(service_element(service, 0), m2));
+        -:  197:    // 2 elemente de acelasi tip
+        1:  198:    medicament_set_cantitate(m2, 5);
+        1:  199:    result = service_add(service, "1234", "Fasconal", 30.0, 5);
+       1*:  200:    assert(result == SUCCESS);
+       1*:  201:    assert(service_length(service) == 1);
+        -:  202:    // alt elem diferit
+        1:  203:    result = service_add(service, "abc", "Fasconal", 30.0, 10);
+       1*:  204:    assert(result == SUCCESS);
+       1*:  205:    assert(service_length(service) == 2);
+        -:  206:
+        -:  207:    // MODIFICARE
+        1:  208:    result = service_modify(service, "abc", "Fasconal", 30.0, "Parasinus", 25.0);
+       1*:  209:    assert(result == SUCCESS);
+        1:  210:    result = service_modify(service, "dac", "Fasconal", 30.0, "Parasinus", 25.0);
+       1*:  211:    assert(result == NOT_FOUND);
+        1:  212:    result = service_modify(service, "abc", "Fasconal", 30.0, "^%^&%*", 120.0);
+       1*:  213:    assert(result == EROARE_NUME + EROARE_CONC);
+        1:  214:    result = service_modify(service, "abc", "Fasconal", 30.0, "med", 120.0);
+       1*:  215:    assert(result == EROARE_CONC);
+        -:  216:
+        -:  217:    // stergere cantitate
+        1:  218:    result = service_delete_cant(service, "abc");
+       1*:  219:    assert(result == SUCCESS);
+        1:  220:    result = service_delete_cant(service, "dac");
+       1*:  221:    assert(result == NOT_FOUND);
+        -:  222:
+        1:  223:    medicament_delete(m2);
+        1:  224:    service_delete(service);
+        1:  225:}
+        -:  226:
+        1:  227:void testall() {
+        1:  228:    test_medicament_getters();
+        1:  229:    test_medicament_setters();
+        1:  230:    test_validator();
+        1:  231:    test_repo_getters();
+        1:  232:    test_medicament_externs();
+        1:  233:    test_repo_setters();
+        1:  234:    test_repo_externs();
+        1:  235:    test_service();
+        1:  236:}

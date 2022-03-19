@@ -1,8 +1,7 @@
-        -:    0:Source:/mnt/c/Desktop/CLionsProjects/OOPlab2/service.c
-        -:    0:Graph:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/service.c.gcno
-        -:    0:Data:/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/service.c.gcda
+        -:    0:Source:C:/Desktop/OOP/lab2/service.c
+        -:    0:Graph:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\service.c.gcno
+        -:    0:Data:C:\Desktop\OOP\lab2\cmake-build-debug-coverage\CMakeFiles\lab2.dir\service.c.gcda
         -:    0:Runs:1
-        -:    0:Programs:1
         -:    1://
         -:    2:// Created by Daniel on 05.03.2022.
         -:    3://
@@ -22,7 +21,7 @@
         -:   17:
         7:   18:Medicament* service_element(Service* service, int index)
         -:   19:{
-        7:   20:    if(service_length(service) == 0) return NULL;
+       7*:   20:    if(service_length(service) == 0) return NULL;
         7:   21:    return service->repository->elements[index];
         -:   22:}
         -:   23:
@@ -55,7 +54,7 @@
         -:   50:{
         4:   51:    Medicament* medicament = medicament_create(cod, nume, conc, 1);
         4:   52:    int result = validate_madicament(medicament);
-        4:   53:    if(result != SUCCESS) { medicament_delete(medicament); return result;}
+       4*:   53:    if(result != SUCCESS) { medicament_delete(medicament); return result;}
         4:   54:    result = validate_nume(nounume) + validate_concentratie(nouaconc);
         4:   55:    if(result != SUCCESS) { medicament_delete(medicament); return result;}
         -:   56:
