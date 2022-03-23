@@ -8,117 +8,119 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Desktop/OOP/lab2/cmake-build-debug"/>
+				<Option working_dir="/mnt/c/Desktop/OOP/lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="lab2">
-				<Option output="C:/Desktop/OOP/lab2/cmake-build-debug/lab2.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Desktop/OOP/lab2/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab2"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="lab2/fast">
-				<Option output="C:/Desktop/OOP/lab2/cmake-build-debug/lab2.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Desktop/OOP/lab2/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab2/fast"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Desktop/OOP/lab2/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Desktop/OOP/lab2/cmake-build-debug"/>
+				<Option working_dir="/mnt/c/Desktop/OOP/lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/Desktop/OOP/lab2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab2">
+				<Option output="/mnt/c/Desktop/OOP/lab2/cmake-build-debug/lab2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Desktop/OOP/lab2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab2"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab2/fast">
+				<Option output="/mnt/c/Desktop/OOP/lab2/cmake-build-debug/lab2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Desktop/OOP/lab2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab2/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Desktop/OOP/lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Desktop/OOP/lab2/domain.c">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/domain.c">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/domain.h">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/domain.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/errors.h">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/errors.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/main.c">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/main.c">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/repository.c">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/repository.c">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/repository.h">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/repository.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/service.c">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/service.c">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/service.h">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/service.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/tests.c">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/tests.c">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/tests.h">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/tests.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/ui.c">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/ui.c">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/ui.h">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/ui.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/validator.c">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/validator.c">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/validator.h">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/validator.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Desktop/OOP/lab2/CMakeLists.txt">
+		<Unit filename="/mnt/c/Desktop/OOP/lab2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -6,7 +6,7 @@
 
 Repository* repository_create(int (*eq)(void*, void*)){
     Repository* repository = malloc(sizeof(Repository));
-    repository->capacity = 2;
+    repository->capacity = 100;
     repository->length = 0;
     repository->elements = (void**) malloc(sizeof(void*) * repository->capacity);
     for(int i=0;i<repository->capacity;++i)
@@ -52,7 +52,7 @@ void repository_set_element_at(Repository* repository, int index, void* value) {
 }
 
 void repository_add(Repository* repository, void* value){
-    if(repository->length > repository->capacity) repository_set_capacity(repository, repository->capacity + repository->capacity/2);
+    if(repository->length > repository->capacity) repository_set_capacity(repository, repository->capacity *2);
     repository->elements[repository->length++] = value;
 }
 

@@ -1,20 +1,21 @@
-
-# Consider dependencies only in project.
-set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
-
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "C"
   )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_C
+  "/mnt/c/Desktop/OOP/lab2/domain.c" "/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/domain.c.o"
+  "/mnt/c/Desktop/OOP/lab2/main.c" "/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/main.c.o"
+  "/mnt/c/Desktop/OOP/lab2/repository.c" "/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/repository.c.o"
+  "/mnt/c/Desktop/OOP/lab2/service.c" "/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/service.c.o"
+  "/mnt/c/Desktop/OOP/lab2/tests.c" "/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/tests.c.o"
+  "/mnt/c/Desktop/OOP/lab2/ui.c" "/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/ui.c.o"
+  "/mnt/c/Desktop/OOP/lab2/validator.c" "/mnt/c/Desktop/OOP/lab2/cmake-build-debug-coverage/CMakeFiles/lab2.dir/validator.c.o"
+  )
+set(CMAKE_C_COMPILER_ID "GNU")
 
-# The set of dependency files which are needed:
-set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Desktop/OOP/lab2/domain.c" "CMakeFiles/lab2.dir/domain.c.obj" "gcc" "CMakeFiles/lab2.dir/domain.c.obj.d"
-  "C:/Desktop/OOP/lab2/main.c" "CMakeFiles/lab2.dir/main.c.obj" "gcc" "CMakeFiles/lab2.dir/main.c.obj.d"
-  "C:/Desktop/OOP/lab2/repository.c" "CMakeFiles/lab2.dir/repository.c.obj" "gcc" "CMakeFiles/lab2.dir/repository.c.obj.d"
-  "C:/Desktop/OOP/lab2/service.c" "CMakeFiles/lab2.dir/service.c.obj" "gcc" "CMakeFiles/lab2.dir/service.c.obj.d"
-  "C:/Desktop/OOP/lab2/tests.c" "CMakeFiles/lab2.dir/tests.c.obj" "gcc" "CMakeFiles/lab2.dir/tests.c.obj.d"
-  "C:/Desktop/OOP/lab2/ui.c" "CMakeFiles/lab2.dir/ui.c.obj" "gcc" "CMakeFiles/lab2.dir/ui.c.obj.d"
-  "C:/Desktop/OOP/lab2/validator.c" "CMakeFiles/lab2.dir/validator.c.obj" "gcc" "CMakeFiles/lab2.dir/validator.c.obj.d"
+# The include file search paths:
+set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 
 # Targets to which this target links.
